@@ -1,6 +1,6 @@
 // Chemie Mibaso – Offline-Cache. Bei Änderungen VERSION hochzählen.
-const VERSION = "chemie-v9";
-const CORE = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png",
+const VERSION = "chemie-v10";
+const CORE = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png", "img/portrait-garten.jpg",
   "clips/gefaehrlich.mp4", "clips/gefaehrlich.jpg", "clips/alltag.mp4", "clips/alltag.jpg", "clips/indikator.mp4", "clips/indikator.jpg",
   "clips/kohlensaeure.mp4", "clips/kohlensaeure.jpg", "clips/chlorwasserstoff.mp4", "clips/chlorwasserstoff.jpg", "clips/springbrunnen.mp4", "clips/springbrunnen.jpg",
   "clips/laugen-alltag.mp4", "clips/laugen-alltag.jpg", "clips/laugen-aetzend.mp4", "clips/laugen-aetzend.jpg", "clips/hydroxid.mp4", "clips/hydroxid.jpg", "clips/laugen-indikator.mp4", "clips/laugen-indikator.jpg", "clips/ammoniak-brunnen.mp4", "clips/ammoniak-brunnen.jpg", "clips/ammoniak-modell.mp4", "clips/ammoniak-modell.jpg", "clips/salmiak.mp4", "clips/salmiak.jpg",

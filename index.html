@@ -60,6 +60,8 @@ h3{font-size:19px;color:var(--petrol-tief)}
 .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
 .lead{font-size:19px}
 .prose{display:grid;gap:12px}
+.portrait-wrap{justify-self:center;width:100%;max-width:300px;aspect-ratio:3/4;margin:10px 0 14px;background:var(--creme-tief);border-radius:16px;overflow:hidden;box-shadow:0 3px 14px rgba(30,92,108,.12)}
+.portrait-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 .klein{font-size:15px;color:var(--ink-soft)}
 ul.clean,ol.clean{margin:0;padding-left:1.2em;display:grid;gap:4px}
 
@@ -2535,10 +2537,11 @@ function seiteStation(eid, sid) {
 }
 
 /* ============ Über mich & Impressum ============ */
-const unterseite = (eyebrow, titel, inhalt) => {
+const unterseite = (eyebrow, titel, inhalt, vorspann = "") => {
   app.innerHTML = `
   <div class="subkopf"><div class="row"><a class="zurueck" href="#start">‹ Chemie Mibaso</a></div></div>
   <div class="huelle"><section class="prose">
+    ${vorspann}
     <span class="eyebrow">${eyebrow}</span>
     <h2 class="h-petrol">${titel}</h2>
     ${inhalt}
@@ -2551,7 +2554,8 @@ function seiteUeber() {
     <p>Inzwischen bin ich im offiziellen „Unruhestand“ angekommen – was im Klartext bedeutet: Endlich Zeit für all die Projekte, die schon viel zu lange in der Warteschleife hingen! Neben meinen ehrenamtlichen Coachings für Neue Medien und meiner Tätigkeit als VHS-Kursleiter gehört dazu nun auch die Entwicklung dieser App – ein Versuch, Wissen, Neugier und ein bisschen Freude am Entdecken zusammenzubringen.</p>
     <p>Diese App ist handgeprüft, aber nicht handgeschnitzt: Einige Inhalte entstanden mit KI-Unterstützung und wurden anschließend von mir überarbeitet.</p>
     <p>Ich hoffe, diese App macht dir Lust auf Chemie. Klick dich durch die Expeditionen und füll deinen Kolben! 😉</p>
-    <p>Kontakt: mibaur@me.com</p>`);
+    <p>Kontakt: mibaur@me.com</p>`,
+    `<div class="portrait-wrap"><img src="img/portrait-garten.jpg" alt="Michael Baur im Garten" onerror="this.parentNode.style.display='none'"></div>`);
 }
 function seiteImpressum() {
   unterseite("Rechtliches", "Impressum &amp; Datenschutz", `
