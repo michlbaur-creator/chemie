@@ -376,6 +376,43 @@ svg[data-stufe="3"] .l-flamme{opacity:1}
 .eg-pole{opacity:0;transition:opacity .4s} svg.strom .eg-pole{opacity:1}
 @media (max-width:480px){.bins.drei{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.p-el,.tz-paar,.ballon-g,.eg-oben{transition:none}}
+/* Kohlenwasserstoffe */
+.vk-rauch circle{opacity:0;transform-box:fill-box;transform-origin:center}
+svg.raucht .vk-rauch circle{animation:vkrauch 1.6s ease-out infinite}
+@keyframes vkrauch{0%{opacity:.6;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-16px) scale(1.8)}}
+.vk-erg{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:var(--sans);font-size:14px}
+.vk-erg>div{background:var(--creme);border-radius:10px;padding:8px 10px;display:grid;gap:2px}
+.m3d svg{touch-action:pan-y;cursor:grab}
+.vb-at{transition:transform 1.4s cubic-bezier(.4,.1,.3,1),opacity .3s}
+.vb-ed{transition:opacity .3s} svg.verbrannt .vb-ed{opacity:0}
+.vb-pr{opacity:0;transition:opacity .5s 1.2s} svg.verbrannt.voll .vb-pr.voll,svg.verbrannt.wenig .vb-pr.wenig{opacity:1}
+.vb-glut{opacity:0} svg.verbrannt .vb-glut{animation:vbglut 1.6s ease-out}
+@keyframes vbglut{0%{opacity:0}25%{opacity:.55}100%{opacity:0}}
+.al-info{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-family:var(--sans);font-size:14px;background:var(--creme);border-radius:10px;padding:10px 12px}
+.al-info dt{color:var(--ink-soft)} .al-info dd{margin:0;font-weight:600;color:var(--ink)}
+.raff-tray{cursor:pointer} .raff-tray:focus{outline:none} .raff-tray.aktiv .hl,.raff-tray:focus-visible .hl{stroke:var(--honig);stroke-width:3}
+.iso-name{display:grid;gap:4px;text-align:center;font-family:var(--sans)}
+.iso-name b{font-family:var(--serif);font-weight:normal;font-size:21px;color:var(--petrol-tief)}
+.iso-name>span{font-size:14px;color:var(--ink-soft)}
+.iso-liste{font-size:13px;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center}
+.iso-liste span{padding:2px 8px;border-radius:999px;background:var(--creme-tief)} .iso-liste span.ja{background:#e3f0e7;color:var(--ok)}
+.iso-c{cursor:pointer} .iso-c:focus{outline:none} .iso-c:focus-visible>circle:last-of-type{stroke:var(--honig);stroke-width:3}
+.spannung{display:inline-block;width:90px;height:10px;border-radius:5px;background:var(--creme-tief);overflow:hidden;vertical-align:middle;margin-right:6px}
+.spannung i{display:block;height:100%;transition:width .5s}
+.bt-liq{transition:fill 1.2s}
+.bt-tropfen{opacity:0} svg.tropft .bt-tropfen{animation:btfall .7s ease-in}
+@keyframes btfall{0%{opacity:1;transform:translateY(0)}100%{opacity:1;transform:translateY(84px)}}
+.bt-lampe{opacity:0;transition:opacity .4s} svg.licht .bt-lampe{opacity:1}
+.bt-dampf circle{opacity:0;transform-box:fill-box;transform-origin:center} svg.licht .bt-dampf circle{animation:vkrauch 1.8s ease-out infinite}
+.bt-papier{transition:fill 1.5s}
+.bt-h,.bt-br{transition:transform 1s ease-in-out}
+.bt-d2,.bt-brbr{transition:opacity .5s} .bt-mol.addiert .bt-d2,.bt-mol.addiert .bt-brbr{opacity:0}
+.bt-cbr{opacity:0;transition:opacity .5s .7s} .bt-mol.addiert .bt-cbr{opacity:1}
+.anim svg.bt-mol{margin-top:6px}
+.pm-g{transition:transform 1.2s cubic-bezier(.4,.1,.3,1)}
+.pm-link{opacity:0;transition:opacity .5s} svg.poly .pm-link{opacity:1;transition-delay:1s}
+.pm-d2{transition:opacity .5s} svg.poly .pm-d2{opacity:0}
+@media (prefers-reduced-motion:reduce){.vb-at,.bt-h,.bt-br,.pm-g,.bt-liq{transition:none}}
 @media (max-width:480px){.glas b{font-size:15px} .slot{font-size:12px}}
 @media (max-width:480px){.answers{grid-template-columns:1fr} body{font-size:17px} .bins{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -541,6 +578,19 @@ const SORT_SETS = {
     ["Kupfer", "m", "Ein Metall – Elektronengas. Darum leitet Kupferdraht so gut."],
     ["Eisen", "m", "Ein Metall – lässt sich schmieden, ohne zu zerbrechen."],
     ["Gold", "m", "Ein Metall – lässt sich zu hauchdünnem Blattgold hämmern."]
+  ],
+  organisch: [
+    ["Zucker", "o", "Zucker enthält Kohlenstoff – beim Erhitzen wird er schwarz."],
+    ["Holz", "o", "Holz besteht aus Kohlenstoffverbindungen. Daraus entsteht Holzkohle."],
+    ["Speiseöl", "o", "Öl ist eine organische Kohlenstoffverbindung."],
+    ["Kerzenwachs", "o", "Paraffin besteht aus langen Kohlenwasserstoff-Ketten."],
+    ["Benzin", "o", "Benzin ist ein Gemisch aus Kohlenwasserstoffen."],
+    ["Eiweiß", "o", "Eiweiße sind große Kohlenstoffverbindungen aus Lebewesen."],
+    ["Kochsalz", "a", "Natriumchlorid enthält keinen Kohlenstoff."],
+    ["Wasser", "a", "H₂O – kein Kohlenstoff drin."],
+    ["Sand", "a", "Sand ist Siliciumdioxid – kein Kohlenstoff."],
+    ["Kohlenstoffdioxid", "a", "Die Falle! CO₂ enthält zwar Kohlenstoff, zählt aber zur anorganischen Chemie."],
+    ["Kalkstein", "a", "Noch eine Falle! Kalk (Calciumcarbonat) enthält Kohlenstoff, ist aber ein anorganisches Salz."]
   ]
 };
 const KARTEN = [
@@ -1287,6 +1337,264 @@ s4: () => `
     </div>
     <p class="feedback" aria-live="polite"></p>
   </div>`,
+s5: () => `
+  <div class="prose lead"><p>Acht Fragen zur ganzen Expedition. Zwei Joker helfen dir: <b>50:50</b> streicht zwei falsche Antworten, und beim <b>Publikumsjoker</b> ruft dir jemand aus dem Saal einen Tipp zu. Ob der stimmt? Wer weiß …</p></div>
+  <p class="klein">7 oder 8 richtig: 💧💧💧 · 5 oder 6: 💧💧 · 3 oder 4: 💧</p>`
+  }
+},
+e6: {
+  id: "e6", titel: "Kohlenwasserstoffe I", motto: "Vom Erdgas zum Benzin", em: "⛽",
+  lead: "Vom Erdgas zum Benzin – füll deinen Kolben, bis alles im grünen Bereich ist.",
+  stationen: [
+    { id: "s1", em: "🌿", titel: "Kohlenstoff – Baustein des Lebens", kurz: "Was ist organische Chemie?", min: 8 },
+    { id: "s2", em: "🐄", titel: "Methan – klein, aber oho", kurz: "Erdgas, Kühe und Klima", min: 8 },
+    { id: "s3", em: "📈", titel: "Die Familie der Alkane", kurz: "Immer ein Kohlenstoff mehr", min: 9 },
+    { id: "s4", em: "🛢️", titel: "Erdöl, Benzin und Feuer", kurz: "Trennen und verbrennen", min: 9 },
+    { id: "s5", em: "🏆", titel: "Wer wird Kohlenwasserstoff-Profi?", kurz: "Das Abschlussquiz mit Jokern", min: 8 }
+  ],
+  raenge: [
+    { ab: 0, name: "Frisch im Labor", med: "🥼" }, { ab: 1, name: "Labor-Neuling", med: "🧪" },
+    { ab: 5, name: "Methan-Detektiv", med: "🔥" }, { ab: 9, name: "Ketten-Kenner", med: "⛓️" },
+    { ab: 13, name: "Raffinerie-Meister", med: "🏅" }
+  ],
+  abzeichen: [
+    { em: "🧪", name: "Erster Versuch", ok: h => h.fertige >= 1 },
+    { em: "🎯", name: "Volltreffer", ok: h => h.dreier >= 1 },
+    { em: "🔍", name: "Kohlenstoff-Spürnase", ok: h => h.d.s1 && h.d.s1.done },
+    { em: "🐄", name: "Methan-Forscher", ok: h => h.d.s2 && h.d.s2.done },
+    { em: "📈", name: "Familien-Kenner", ok: h => h.d.s3 && h.d.s3.done },
+    { em: "🛢️", name: "Raffinerie-Profi", ok: h => h.d.s4 && h.d.s4.done },
+    { em: "🏆", name: "Kohlenwasserstoff-Profi", ok: h => h.d.s5 && h.d.s5.tropfen >= 3 },
+    { em: "🌟", name: "Voller Kolben", ok: h => h.summe >= 15 }
+  ],
+  checks: {
+    s1: [
+      ["Was haben alle organischen Stoffe gemeinsam?", ["Sie enthalten Kohlenstoff", "Sie sind grün", "Sie stammen alle aus Pflanzen", "Sie enthalten Metalle"]],
+      ["Woran erkennst du Kohlenstoff, wenn du Zucker stark erhitzt?", ["Er wird schwarz", "Er wird blau", "Er leuchtet rot", "Er bleibt weiß"]],
+      ["Wie viele Bindungen geht ein Kohlenstoff-Atom ein?", ["4", "1", "2", "3"]]
+    ],
+    s2: [
+      ["Woraus besteht Erdgas zum größten Teil?", ["Methan", "Sauerstoff", "Kohlenstoffdioxid", "Wasserdampf"]],
+      ["Warum riecht Erdgas aus der Leitung?", ["Ein Geruchsstoff wird zur Sicherheit zugesetzt", "Methan stinkt von Natur aus", "Es enthält Schwefelsäure", "Es ist verdorben"]],
+      ["Welche Form hat das Methan-Molekül?", ["Tetraeder (Dreieckspyramide)", "flaches Quadrat", "gerade Linie", "Würfel"]]
+    ],
+    s3: [
+      ["Welche allgemeine Formel haben die Alkane?", ["CₙH₂ₙ₊₂", "CₙH₂ₙ", "CₙHₙ", "C₂ₙHₙ"]],
+      ["Wie heißt das Alkan mit fünf Kohlenstoff-Atomen?", ["Pentan", "Butan", "Hexan", "Propan"]],
+      ["Was passiert mit der Siedetemperatur, wenn die Kette länger wird?", ["Sie steigt", "Sie sinkt", "Sie bleibt gleich", "Sie springt hin und her"]]
+    ],
+    s4: [
+      ["Wie trennt man Erdöl in Benzin, Diesel und Co.?", ["Durch Destillation", "Durch Filtern", "Mit einem Magneten", "Durch Schütteln"]],
+      ["Was entsteht, wenn Methan vollständig verbrennt?", ["Kohlenstoffdioxid und Wasser", "Nur Ruß", "Sauerstoff und Wasserstoff", "Methan und Wasser"]],
+      ["Was bedeutet „Paraffin“ übersetzt?", ["wenig reaktionsfreudig", "sehr explosiv", "aus Paris", "flüssiges Gold"]]
+    ]
+  },
+  profi: [
+    ["Organische Chemie ist die Chemie der …", ["Kohlenstoffverbindungen", "Metalle", "Edelgase", "Salze"],
+      ["Anna: Kohlenstoff – ganz klar!", "Ben: Irgendwas mit Kohlenstoff …", "Carla: Kohlenstoff oder Salze …", "David: Metalle? Die glänzen so schön!"]],
+    ["Friedrich Wöhler stellte 1828 im Labor einen Stoff aus dem Körper her. Welchen?", ["Harnstoff", "Zucker", "Blut", "Benzin"],
+      ["Emil: Harnstoff war’s!", "Frieda: Ich glaube, Harnstoff …", "Gabi: Harnstoff oder Zucker …", "Henri: Blut? Klingt dramatisch!"]],
+    ["Welches Gas trübt Kalkwasser?", ["Kohlenstoffdioxid", "Sauerstoff", "Stickstoff", "Methan"],
+      ["Ida: CO₂ – das ist der Nachweis!", "Jonas: Kohlenstoffdioxid, oder?", "Karla: CO₂ oder Sauerstoff …", "Lukas: Sauerstoff macht alles trüb!"]],
+    ["Welche Formel hat Propan?", ["C₃H₈", "C₃H₆", "C₃H₃", "C₈H₃"],
+      ["Mia: C₃H₈ – zweimal drei plus zwei!", "Nils: C₃H₈, glaube ich …", "Oskar: C₃H₈ oder C₃H₆ …", "Pia: C₈H₃ – Hauptsache die Zahlen stimmen!"]],
+    ["Welches Alkan ist bei Zimmertemperatur fest?", ["Eicosan (C₂₀H₄₂)", "Methan", "Butan", "Hexan"],
+      ["Quirin: Das lange – Eicosan!", "Romy: Je länger, desto fester …", "Sven: Eicosan oder Hexan …", "Tilda: Methan ist doch Eis, oder?"]],
+    ["Warum ist Methan schlecht fürs Klima?", ["Es ist ein starkes Treibhausgas", "Es zerstört Pflanzen", "Es macht den Regen sauer", "Es kühlt die Erde"],
+      ["Ulla: Treibhausgas – noch stärker als CO₂!", "Vito: Treibhausgas, glaube ich …", "Wanda: Treibhaus oder saurer Regen …", "Xaver: Es kühlt doch – ist ja Gas!"]],
+    ["Welche Fraktion sammelt sich im Destillationsturm ganz oben?", ["Gase wie Propan und Butan", "Bitumen", "Schmieröl", "Diesel"],
+      ["Yvonne: Ganz oben die Gase!", "Zoe: Was leicht siedet, steigt hoch …", "Arne: Gase oder Benzin …", "Bea: Bitumen – das schwimmt oben!"]],
+    ["Was entsteht, wenn eine Kerze zu wenig Sauerstoff bekommt?", ["Ruß", "Gold", "Salz", "Sauerstoff"],
+      ["Carl: Ruß – schwarzer Kohlenstoff!", "Doro: Ruß, glaube ich …", "Elke: Ruß oder Salz …", "Fritz: Gold – Kerzen sind wertvoll!"]]
+  ],
+  inhalt: {
+s1: () => `
+  <div class="prose lead"><p>Zucker, Holz, Öl, Eiweiß, Benzin – so verschieden sie sind, in allen steckt dasselbe Element: Kohlenstoff.</p></div>
+  <div class="prose"><p>Früher glaubte man, dass bestimmte Stoffe nur von Lebewesen gebildet werden können. Der Schwede Berzelius nannte sie deshalb <b>organische Stoffe</b>. Doch 1828 stellte der deutsche Chemiker Friedrich Wöhler im Labor <b>Harnstoff</b> her – einen Stoff, den sonst nur der Körper bildet. Damit war klar: Organische Stoffe folgen denselben Regeln wie alle anderen.</p>
+  <p>Heute versteht man unter <b>organischer Chemie</b> die Chemie der <b>Kohlenstoffverbindungen</b>. Man kennt viele Millionen davon – weit mehr als von allen anderen Elementen zusammen.</p></div>
+  ${clip("kw-verkohlen", "Holz wird erhitzt",
+    "Holz wird im Reagenzglas ohne Luft erhitzt. Gase entweichen, zurück bleibt schwarze Holzkohle – fast reiner Kohlenstoff.")}
+  <div class="box anim" data-widget="verkohlen"></div>
+  <div class="prose"><p>Auch beim Verbrennen verrät sich der Kohlenstoff: Eine Flamme hinterlässt an einer kalten Porzellanschale schwarzen <b>Ruß</b>. Und die Abgase trüben <b>Kalkwasser</b> – das ist der Nachweis für Kohlenstoffdioxid.</p></div>
+  ${clip("kw-kalkwasser", "Ruß und Kalkwasser",
+    "Eine Kerzenflamme hinterlässt an einer kalten Porzellanschale schwarzen Ruß. Danach werden die Abgase einer Kerze durch Kalkwasser gesaugt: Es wird milchig trüb – in den Abgasen steckt Kohlenstoffdioxid.")}
+  <div class="merke"><span class="eyebrow">Merke</span>
+    <p>Organische Stoffe enthalten <b>Kohlenstoff</b>. Ein Kohlenstoff-Atom hat vier Außenelektronen und geht deshalb <b>vier Bindungen</b> ein. Kohlenstoff-Atome können sich zu langen Ketten und Ringen verbinden – darum gibt es so viele organische Stoffe.</p></div>
+  <div class="box" data-widget="sort" data-set="organisch">
+    <span class="eyebrow">Mitmachen</span>
+    <h3>Organisch oder nicht?</h3>
+    <p class="klein">Tippe einen Stoff an und dann die passende Kiste. Vorsicht, zwei Fallen sind dabei!</p>
+    <div class="chips" data-pool></div>
+    <div class="bins">
+      <div class="bin h" data-bin="o" role="button" tabindex="0"><h4>🌿 organisch</h4><div class="chips"></div></div>
+      <div class="bin g" data-bin="a" role="button" tabindex="0"><h4>🪨 anorganisch</h4><div class="chips"></div></div>
+    </div>
+    <p class="feedback" aria-live="polite"></p>
+  </div>
+  <details><summary>Für Neugierige: Warum zählt CO₂ nicht dazu?</summary><div class="grid">
+    <p>Kohlenstoffdioxid, Kohlensäure und Carbonate wie Kalkstein enthalten zwar Kohlenstoff. Sie kommen aber auch in der unbelebten Natur vor und verhalten sich wie typische anorganische Stoffe. Deshalb rechnet man sie – ebenso wie reinen Kohlenstoff (Graphit, Diamant) – zur anorganischen Chemie.</p></div></details>`,
+s2: () => `
+  <div class="prose lead"><p>Das einfachste organische Molekül besteht aus nur fünf Atomen: Methan, CH₄.</p></div>
+  <div class="prose"><p><b>Methan</b> ist ein farbloses, geruchloses und brennbares Gas. Es ist der Hauptbestandteil von <b>Erdgas</b>, mit dem viele Häuser heizen. Der typische Gasgeruch wird übrigens künstlich zugesetzt – damit man ein Leck sofort bemerkt.</p>
+  <p>Methan entsteht überall dort, wo Pflanzenreste ohne Luft verrotten: im Schlamm von Sümpfen, in Reisfeldern, in Biogasanlagen – und im Magen von Kühen. Eine Kuh rülpst mehrere hundert Liter Methan am Tag.</p></div>
+  ${clip("kw-methan", "Methan auffangen",
+    "Methan aus der Stahlflasche wird unter Wasser in einem Standzylinder aufgefangen und verdrängt das Wasser. Am Glasröhrchen angezündet, brennt es mit kleiner Flamme.")}
+  <div class="box anim" data-widget="modell3d" data-set="methan"></div>
+  <div class="prose"><p>Das Kohlenstoff-Atom bindet vier Wasserstoff-Atome. Die vier Elektronenpaare stoßen sich ab und gehen so weit wie möglich auseinander: Die H-Atome sitzen an den Ecken einer Dreieckspyramide, eines <b>Tetraeders</b>. Zwischen zwei Bindungen liegt immer ein Winkel von 109,5°.</p></div>
+  <div class="gefahr"><b>⚠️ Gefährlich und klimawirksam</b><br>Mischt sich Methan mit Luft, kann es explodieren – im Bergbau als gefürchtetes „Grubengas“. Und Methan ist ein starkes <b>Treibhausgas</b>: Auf 20 Jahre gerechnet wärmt es die Erde rund 80-mal stärker als die gleiche Menge Kohlenstoffdioxid.</div>
+  <div class="box anim" data-widget="verbrennung"></div>
+  <div class="merke"><span class="eyebrow">Merke</span>
+    <p><b>Methan</b> (CH₄) ist der Hauptbestandteil von Erdgas. Das Molekül hat die Form eines <b>Tetraeders</b>. Methan verbrennt zu Kohlenstoffdioxid und Wasser: CH₄ + 2 O₂ → CO₂ + 2 H₂O.</p></div>`,
+s3: () => `
+  <div class="prose lead"><p>Methan hat viele Geschwister: Hängt man an die Kette immer ein Kohlenstoff-Atom mehr, entsteht eine ganze Familie.</p></div>
+  <div class="prose"><p>Moleküle, die nur aus <b>Kohlenstoff und Wasserstoff</b> bestehen, heißen <b>Kohlenwasserstoffe</b>. Sind alle Bindungen Einfachbindungen, spricht man von <b>Alkanen</b>. Auf Methan folgen Ethan (C₂H₆), Propan (C₃H₈) und Butan (C₄H₁₀). Ab fünf Kohlenstoff-Atomen verraten griechische Zahlwörter die Länge: Pentan, Hexan, Heptan, Octan …</p>
+  <p>Jedes Glied unterscheidet sich vom nächsten um eine CH₂-Gruppe. So eine Reihe nennt man <b>homologe Reihe</b>. Für alle Alkane gilt dieselbe Formel: <b>CₙH₂ₙ₊₂</b>.</p></div>
+  <div class="box anim" data-widget="alkanleiter"></div>
+  <div class="prose"><p>Je länger die Kette, desto stärker haften die Moleküle aneinander – ein bisschen wie gekochte Spaghetti im Vergleich zu Reiskörnern. Deshalb steigen die Siedetemperaturen: Die kurzen Alkane sind Gase, die mittleren Flüssigkeiten, die langen fest wie Kerzenwachs. Die Kräfte zwischen den Molekülen heißen <b>Van-der-Waals-Kräfte</b>.</p></div>
+  ${clip("kw-brennbar", "Wie gut brennen Alkane?",
+    "Pentan fängt sofort Feuer und brennt lichterloh. Das längere Decan muss man erst mit dem Brenner erhitzen, bevor es brennt.")}
+  <div class="prose"><p>Alkane mischen sich nicht mit Wasser, wohl aber mit Fett und Öl. Man sagt: Sie sind <b>wasserfeindlich</b> (hydrophob) und <b>fettfreundlich</b> (lipophil). Darum bekommt man Ölflecken auch mit Wasser allein nicht weg.</p></div>
+  <div class="merke"><span class="eyebrow">Merke</span>
+    <p><b>Alkane</b> sind Kohlenwasserstoffe mit Einfachbindungen. Sie bilden eine <b>homologe Reihe</b> mit der Formel CₙH₂ₙ₊₂. Mit wachsender Kettenlänge steigen Schmelz- und Siedetemperatur.</p></div>`,
+s4: () => `
+  <div class="prose lead"><p>Benzin, Diesel, Kerosin, Heizöl, Kerzenwachs – sie alle stammen aus demselben schwarzen Rohstoff.</p></div>
+  <div class="prose"><p><b>Erdöl</b> ist vor vielen Millionen Jahren aus abgestorbenem Plankton am Meeresgrund entstanden. Es ist ein <b>Gemisch</b> aus Tausenden verschiedenen Kohlenwasserstoffen. In der Raffinerie wird es erhitzt und nach Siedetemperaturen getrennt – durch <b>Destillation</b>.</p></div>
+  ${clip("kw-rohoel", "Rohöl",
+    "Rohöl wird in eine Schale gegossen: eine dunkle, zähe Flüssigkeit mit typischem Geruch – ein Gemisch aus unzähligen Kohlenwasserstoffen.")}
+  <div class="box anim" data-widget="raffinerie"></div>
+  <div class="prose"><p>Alkane sind ziemlich träge: Säuren und Laugen greifen sie nicht an. Darum nannte man die festen Alkane <b>Paraffine</b> – von lateinisch „parum affinis“, wenig reaktionsfreudig. Mit Sauerstoff reagieren sie aber sehr wohl – sobald man sie anzündet. Dabei wird viel Energie frei. Genau deshalb sind sie so wertvolle Brennstoffe.</p></div>
+  ${clip("kw-energie", "Energie aus Erdöl",
+    "Kerosin für Flugzeuge, Heizöl für die Heizung, Brennstoff für Kraftwerke – alles Kohlenwasserstoffe aus Erdöl.")}
+  <div class="prose"><p>Bei der <b>vollständigen Verbrennung</b> entstehen nur Kohlenstoffdioxid und Wasser. Fehlt Sauerstoff, entstehen zusätzlich schwarzer Ruß und das giftige <b>Kohlenstoffmonoxid</b>. Deshalb müssen Gasthermen und Öfen regelmäßig geprüft werden.</p></div>
+  <div class="gefahr"><b>🌍 Und das Klima?</b><br>Beim Verbrennen von Erdöl, Erdgas und Kohle gelangt Kohlenstoff, der Millionen Jahre im Boden lag, als CO₂ in die Luft. Das verstärkt den Treibhauseffekt. Darum sucht man nach Wegen, mit weniger Öl und Gas auszukommen.</div>
+  <div class="merke"><span class="eyebrow">Merke</span>
+    <p><b>Erdöl</b> ist ein Gemisch aus Kohlenwasserstoffen. Durch <b>Destillation</b> trennt man es in Fraktionen mit ähnlicher Siedetemperatur: Gas, Benzin, Kerosin, Diesel und Heizöl, Schmieröl und Bitumen. Alkane verbrennen zu Kohlenstoffdioxid und Wasser.</p></div>`,
+s5: () => `
+  <div class="prose lead"><p>Acht Fragen zur ganzen Expedition. Zwei Joker helfen dir: <b>50:50</b> streicht zwei falsche Antworten, und beim <b>Publikumsjoker</b> ruft dir jemand aus dem Saal einen Tipp zu. Ob der stimmt? Wer weiß …</p></div>
+  <p class="klein">7 oder 8 richtig: 💧💧💧 · 5 oder 6: 💧💧 · 3 oder 4: 💧</p>`
+  }
+},
+e7: {
+  id: "e7", titel: "Kohlenwasserstoffe II", motto: "Ketten, Ringe, Doppelbindungen", em: "⛓️",
+  lead: "Ketten, Ringe, Doppelbindungen – füll deinen Kolben, bis alles im grünen Bereich ist.",
+  stationen: [
+    { id: "s1", em: "🔀", titel: "Gleiche Formel, andere Form", kurz: "Isomere und ihre Namen", min: 9 },
+    { id: "s2", em: "⭕", titel: "Ringe aus Kohlenstoff", kurz: "Die Cycloalkane", min: 7 },
+    { id: "s3", em: "🟠", titel: "Die Doppelbindung", kurz: "Alkene und der Brom-Test", min: 9 },
+    { id: "s4", em: "🧴", titel: "Vom Schweißbrenner zur Plastiktüte", kurz: "Ethin, Kunststoff und Benzol", min: 9 },
+    { id: "s5", em: "🏆", titel: "Wer wird Molekül-Profi?", kurz: "Das Abschlussquiz mit Jokern", min: 8 }
+  ],
+  raenge: [
+    { ab: 0, name: "Frisch im Labor", med: "🥼" }, { ab: 1, name: "Labor-Neuling", med: "🧪" },
+    { ab: 5, name: "Ketten-Bastler", med: "🧩" }, { ab: 9, name: "Doppelbindungs-Detektiv", med: "🟠" },
+    { ab: 13, name: "Molekül-Architekt", med: "🏅" }
+  ],
+  abzeichen: [
+    { em: "🧪", name: "Erster Versuch", ok: h => h.fertige >= 1 },
+    { em: "🎯", name: "Volltreffer", ok: h => h.dreier >= 1 },
+    { em: "🔀", name: "Isomeren-Finder", ok: h => h.d.s1 && h.d.s1.done },
+    { em: "⭕", name: "Ring-Schließer", ok: h => h.d.s2 && h.d.s2.done },
+    { em: "🟠", name: "Brom-Detektiv", ok: h => h.d.s3 && h.d.s3.done },
+    { em: "🧴", name: "Kunststoff-Kenner", ok: h => h.d.s4 && h.d.s4.done },
+    { em: "🏆", name: "Molekül-Profi", ok: h => h.d.s5 && h.d.s5.tropfen >= 3 },
+    { em: "🌟", name: "Voller Kolben", ok: h => h.summe >= 15 }
+  ],
+  checks: {
+    s1: [
+      ["Was sind Isomere?", ["Stoffe mit gleicher Summenformel, aber anderem Molekülbau", "Stoffe mit gleichem Namen", "Stoffe aus verschiedenen Elementen", "Moleküle mit Doppelbindung"]],
+      ["Wie viele Isomere gibt es mit der Formel C₄H₁₀?", ["2", "1", "3", "4"]],
+      ["Wonach richtet sich der Stammname eines verzweigten Alkans?", ["nach der längsten Kohlenstoff-Kette", "nach der Anzahl der H-Atome", "nach dem Erfinder", "nach der Farbe"]]
+    ],
+    s2: [
+      ["Welche allgemeine Formel haben die Cycloalkane?", ["CₙH₂ₙ", "CₙH₂ₙ₊₂", "CₙHₙ", "CₙH₂ₙ₋₂"]],
+      ["Warum ist Cyclopropan so reaktionsfreudig?", ["Die Bindungswinkel sind stark zusammengedrückt (Ringspannung)", "Es enthält Sauerstoff", "Es ist ein Metall", "Es hat eine Doppelbindung"]],
+      ["Welcher Ring ist praktisch spannungsfrei?", ["Cyclohexan", "Cyclopropan", "Cyclobutan", "keiner"]]
+    ],
+    s3: [
+      ["Was zeigt der Brom-Test an?", ["Eine Doppelbindung: Das Brom wird sofort entfärbt", "Sauerstoff im Molekül", "Ob der Stoff brennt", "Ob der Stoff giftig ist"]],
+      ["Ethen und Brom reagieren durch …", ["Addition", "Substitution", "Neutralisation", "Destillation"]],
+      ["Welche allgemeine Formel haben die Alkene (mit einer Doppelbindung)?", ["CₙH₂ₙ", "CₙH₂ₙ₊₂", "CₙHₙ", "CₙH₂ₙ₋₂"]]
+    ],
+    s4: [
+      ["Welches Gas entsteht, wenn Calciumcarbid mit Wasser reagiert?", ["Ethin (Acetylen)", "Methan", "Sauerstoff", "Chlor"]],
+      ["Woraus entsteht Polyethylen?", ["Aus vielen Ethen-Molekülen", "Aus Kochsalz", "Aus Benzol und Wasser", "Aus Methan und Sauerstoff"]],
+      ["Warum heißen Benzol und seine Verwandten „Aromaten“?", ["Viele von ihnen riechen auffällig", "Sie sind besonders bunt", "Sie kommen aus Arabien", "Sie sind alle süß"]]
+    ]
+  },
+  profi: [
+    ["Butan und 2-Methylpropan haben beide die Formel C₄H₁₀. Sie sind …", ["Isomere", "Ionen", "Isotope", "Indikatoren"],
+      ["Greta: Isomere – gleiche Formel, andere Form!", "Hannes: Isomere, glaube ich …", "Ilka: Isomere oder Isotope …", "Jakob: Indikatoren, die färben sich!"]],
+    ["Wie heißt dieses Alkan: eine Kette aus fünf C-Atomen mit einer CH₃-Gruppe am zweiten C-Atom?", ["2-Methylpentan", "5-Methylpentan", "Hexan", "2-Pentylmethan"],
+      ["Klara: 2-Methylpentan!", "Leo: Methyl an der Zwei …", "Marie: 2-Methylpentan oder Hexan …", "Nico: 5-Methylpentan – von hinten gezählt!"]],
+    ["Cyclohexan hat die Formel …", ["C₆H₁₂", "C₆H₁₄", "C₆H₆", "C₁₂H₆"],
+      ["Olli: C₆H₁₂ – Ring heißt zwei H weniger!", "Paula: C₆H₁₂, glaube ich …", "Rudi: C₆H₁₂ oder C₆H₁₄ …", "Sina: C₆H₆ – sechs und sechs!"]],
+    ["Welcher Stoff entfärbt Bromwasser sofort?", ["Hexen", "Hexan", "Wasser", "Kochsalzlösung"],
+      ["Timo: Hexen – das hat die Doppelbindung!", "Uschi: Das mit dem „en“ …", "Volker: Hexen oder Hexan …", "Wilma: Wasser verdünnt doch alles!"]],
+    ["Welches Pflanzenhormon lässt Früchte reifen?", ["Ethen", "Methan", "Benzol", "Butan"],
+      ["Xenia: Ethen – deshalb reifen Bananen neben Äpfeln!", "Yusuf: Ethen, glaube ich …", "Zora: Ethen oder Methan …", "Anton: Benzol – riecht doch fruchtig!"]],
+    ["Was passiert bei der Polymerisation?", ["Viele kleine Moleküle verbinden sich zu einer langen Kette", "Ein Molekül zerfällt in Atome", "Ein Stoff wird destilliert", "Ein Salz löst sich"],
+      ["Bert: Viele kleine werden eine lange Kette!", "Clara: Irgendwas mit Ketten …", "Dennis: Kette oder Zerfall …", "Eva: Das Molekül zerfällt – poly heißt kaputt!"]],
+    ["Wofür braucht man Ethin (Acetylen)?", ["Zum Schweißen", "Zum Kühlen", "Als Lebensmittel", "Zum Löschen von Bränden"],
+      ["Falk: Schweißen – über 3000 Grad!", "Gina: Schweißbrenner, glaube ich …", "Holger: Schweißen oder Kühlen …", "Iris: Zum Löschen – ist doch ein Gas!"]],
+    ["Benzol ist heute in Schulen verboten, weil es …", ["krebserregend ist", "zu teuer ist", "nicht brennt", "zu gut riecht"],
+      ["Jana: Krebserregend – deshalb!", "Kai: Es ist gefährlich, glaube ich …", "Lina: Krebserregend oder zu teuer …", "Malte: Weil es zu gut riecht!"]]
+  ],
+  inhalt: {
+s1: () => `
+  <div class="prose lead"><p>Zwei Moleküle, gleiche Formel – und trotzdem verschiedene Stoffe? Das geht!</p></div>
+  <div class="prose"><p>Ab vier Kohlenstoff-Atomen kann eine Kette auch <b>verzweigt</b> sein. Neben dem geraden Butan gibt es ein verzweigtes Molekül mit derselben Formel C₄H₁₀. Beide sind verschiedene Stoffe: Das verzweigte siedet schon bei −12 °C, das gerade Butan erst bei −0,5 °C.</p>
+  <p>Stoffe mit gleicher Summenformel, aber unterschiedlichem Bau heißen <b>Isomere</b>. Je länger die Kette, desto mehr Möglichkeiten: C₅H₁₂ hat 3 Isomere, C₁₀H₂₂ schon 75 – und C₂₀H₄₂ sage und schreibe 366 319.</p></div>
+  <div class="box anim" data-widget="isomere"></div>
+  <div class="merke"><span class="eyebrow">So benennst du verzweigte Alkane</span>
+    <ol class="clean">
+      <li>Suche die <b>längste Kette</b>. Sie gibt den Stammnamen, z. B. Pentan.</li>
+      <li>Nummeriere die Kette so, dass die Verzweigungen <b>möglichst kleine Zahlen</b> bekommen.</li>
+      <li>Setze die Seitenketten davor: eine CH₃-Gruppe heißt <b>Methyl</b>. Zwei gleiche heißen <b>Dimethyl</b>, drei <b>Trimethyl</b>.</li>
+    </ol>
+    <p>Beispiel: <b>2,3-Dimethylpentan</b> – eine Fünferkette mit je einer Methylgruppe am 2. und 3. Kohlenstoff-Atom.</p></div>
+  <details><summary>Für Neugierige: Warum sieden verzweigte Isomere früher?</summary><div class="grid">
+    <p>Verzweigte Moleküle sind kompakter, fast kugelig. Sie berühren sich nur an wenigen Stellen – die Van-der-Waals-Kräfte zwischen ihnen sind schwächer. Darum reicht weniger Wärme, um sie voneinander zu lösen. Lange, gestreckte Moleküle dagegen liegen eng aneinander wie Spaghetti.</p></div></details>`,
+s2: () => `
+  <div class="prose lead"><p>Was passiert, wenn sich eine Kohlenstoff-Kette in den eigenen Schwanz beißt? Es entsteht ein Ring.</p></div>
+  <div class="prose"><p>Verbinden sich die beiden Enden einer Alkan-Kette, entsteht ein <b>Cycloalkan</b>. Dafür müssen beide Enden je ein Wasserstoff-Atom abgeben. Die Formel lautet deshalb <b>CₙH₂ₙ</b>: Cyclopropan C₃H₆, Cyclobutan C₄H₈, Cyclopentan C₅H₁₀, Cyclohexan C₆H₁₂ …</p></div>
+  ${clip("kw-cyclohexan", "Ein Ring im Modell",
+    "Kohlenstoff-Atome (schwarz) werden zu einem Ring zusammengesteckt. Mit den Wasserstoff-Atomen (weiß) wird daraus ein Cycloalkan.")}
+  <div class="box anim" data-widget="ringe"></div>
+  <div class="prose"><p>Kleine Ringe stehen unter Spannung: Im Dreiring sind die Bindungen auf 60° zusammengedrückt, obwohl sie eigentlich 109,5° auseinander wollen. Cyclopropan ist deshalb reaktionsfreudig. Der Sechsring dagegen faltet sich zu einer Art Liegestuhl – der <b>Sesselform</b> – und ist so praktisch spannungsfrei.</p>
+  <p>Sechsringe stecken in vielen Naturstoffen: im <b>Menthol</b> der Pfefferminze zum Beispiel, oder im Kampfer.</p></div>
+  ${clip("kw-menthol", "Ringe in der Natur",
+    "Menthol und Kampfer – die eingeblendeten Formeln zeigen: Beide enthalten Kohlenstoff-Sechsringe. Menthol sorgt für die Frische der Pfefferminze.")}
+  <div class="merke"><span class="eyebrow">Merke</span>
+    <p><b>Cycloalkane</b> sind ringförmige Kohlenwasserstoffe mit Einfachbindungen. Ihre Formel lautet <b>CₙH₂ₙ</b>. Kleine Ringe sind gespannt und reaktionsfreudig, der Sechsring ist spannungsfrei.</p></div>`,
+s3: () => `
+  <div class="prose lead"><p>Teilen sich zwei Kohlenstoff-Atome gleich zwei Elektronenpaare, entsteht eine Doppelbindung – und das Molekül wird lebhaft.</p></div>
+  <div class="prose"><p>Kohlenwasserstoffe mit einer <b>Doppelbindung</b> heißen <b>Alkene</b>. Ihre Namen enden auf <b>-en</b>: Ethen, Propen, Buten … Weil an der Doppelbindung zwei Wasserstoff-Atome fehlen, lautet ihre Formel <b>CₙH₂ₙ</b>. Man nennt sie auch <b>ungesättigt</b>: Sie könnten noch mehr Atome aufnehmen.</p>
+  <p>Das kleinste Alken, <b>Ethen</b>, ist übrigens ein Pflanzenhormon. Reife Äpfel geben es ab – deshalb reifen Bananen neben Äpfeln schneller.</p></div>
+  <div class="box anim" data-widget="modell3d" data-set="ethen"></div>
+  <div class="prose"><p>Wie erkennt man eine Doppelbindung? Mit <b>Brom</b>. Brom ist rotbraun. Gibt man es zu einem Alken, verschwindet die Farbe sofort: Die Doppelbindung klappt auf, und an jedes der beiden Kohlenstoff-Atome lagert sich ein Brom-Atom an. Diese Reaktion heißt <b>Addition</b>.</p></div>
+  <div class="box anim" data-widget="bromtest"></div>
+  ${clip("kw-bromtest", "Der Brom-Test",
+    "Brom wird zu Hexen gegeben. Beim Schütteln verschwindet die rotbraune Farbe – ein Zeichen für eine Doppelbindung.")}
+  <div class="prose"><p>Ein Alkan wie Hexan reagiert erst, wenn man es belichtet oder erwärmt. Dann ersetzt ein Brom-Atom ein Wasserstoff-Atom, und es bildet sich stechend riechender Bromwasserstoff. Das ist eine <b>Substitution</b> – ein Austausch statt einer Anlagerung.</p>
+  <p>Auch Wasserstoff lässt sich an eine Doppelbindung addieren. Dieses <b>Hydrieren</b> nutzt man zum Beispiel, um flüssige Pflanzenöle zu streichfähiger Margarine zu härten.</p></div>
+  <div class="merke"><span class="eyebrow">Merke</span>
+    <p><b>Alkene</b> haben eine C=C-<b>Doppelbindung</b> und die Formel CₙH₂ₙ. Sie entfärben Brom sofort durch <b>Addition</b>. Alkane reagieren mit Brom nur bei Licht oder Wärme durch <b>Substitution</b>.</p></div>`,
+s4: () => `
+  <div class="prose lead"><p>Noch mehr Bindungen zwischen zwei Kohlenstoff-Atomen? Ja – sogar drei!</p></div>
+  <div class="prose"><p>Kohlenwasserstoffe mit einer <b>Dreifachbindung</b> heißen <b>Alkine</b>. Das bekannteste ist <b>Ethin</b>, auch Acetylen genannt (C₂H₂). Man stellt es aus Calciumcarbid und Wasser her. Früher leuchteten damit die Karbidlampen der Bergleute. Mit reinem Sauerstoff verbrannt, wird die Flamme über 3000 °C heiß – heiß genug zum <b>Schweißen</b> von Stahl.</p></div>
+  ${clip("kw-carbid", "Ethin aus Carbid",
+    "Calciumcarbid (graue Brocken) reagiert mit Wasser. Das entstehende Gas Ethin wird unter Wasser aufgefangen.")}
+  ${clip("kw-schweissen", "Schweißen mit Ethin",
+    "Ein Ethin-Sauerstoff-Brenner wird gezündet. Seine Flamme ist so heiß, dass man damit Stahl schweißen und sogar schneiden kann.")}
+  <div class="box anim" data-widget="modell3d" data-set="ethin"></div>
+  <div class="prose"><p>Doppelbindungen können sich auch öffnen und mit Nachbarn verketten. Unter Druck und mit einem Katalysator verbinden sich Tausende <b>Ethen</b>-Moleküle zu einer Riesenkette: <b>Polyethylen</b>. Aus diesem Kunststoff bestehen Plastiktüten, Folien und Flaschendeckel. Den Vorgang nennt man <b>Polymerisation</b>.</p></div>
+  <div class="box anim" data-widget="polymer"></div>
+  <div class="prose"><p>Ein ganz besonderer Ring ist <b>Benzol</b> (C₆H₆). Der Chemiker August Kekulé soll seinen Aufbau 1865 im Traum gesehen haben – als Schlange, die sich in den Schwanz beißt. Die sechs Elektronen der „Doppelbindungen“ sind gleichmäßig über den ganzen Ring verteilt. Deshalb zeichnet man oft einen Kreis in das Sechseck.</p></div>
+  <div class="box anim" data-widget="modell3d" data-set="benzol"></div>
+  <div class="prose"><p>Benzol und seine Verwandten heißen <b>Aromaten</b>, weil viele von ihnen auffällig riechen – etwa Vanillin, der Duftstoff der Vanille. Aus Aromaten stellt man Farben, Medikamente und Kunststoffe her.</p></div>
+  <div class="gefahr"><b>⚠️ Benzol ist krebserregend</b><br>Deshalb wird es in Schulen heute nicht mehr verwendet. Im Benzin ist sein Anteil gesetzlich auf ein Prozent begrenzt.</div>
+  <div class="merke"><span class="eyebrow">Merke</span>
+    <p><b>Alkine</b> haben eine C≡C-<b>Dreifachbindung</b>, z. B. Ethin. Bei der <b>Polymerisation</b> verbinden sich viele kleine Moleküle zu langen Ketten – so entstehen Kunststoffe wie Polyethylen. <b>Benzol</b> ist ein Ring mit gleichmäßig verteilten Elektronen, der Grundbaustein der <b>Aromaten</b>.</p></div>`,
 s5: () => `
   <div class="prose lead"><p>Acht Fragen zur ganzen Expedition. Zwei Joker helfen dir: <b>50:50</b> streicht zwei falsche Antworten, und beim <b>Publikumsjoker</b> ruft dir jemand aus dem Saal einen Tipp zu. Ob der stimmt? Wer weiß …</p></div>
   <p class="klein">7 oder 8 richtig: 💧💧💧 · 5 oder 6: 💧💧 · 3 oder 4: 💧</p>`
@@ -2148,6 +2456,515 @@ const WIDGETS = {
     if (!reduce) requestAnimationFrame(schritt);
   },
 
+  /* ---- Was wird schwarz? (Verkohlen) ---- */
+  verkohlen(el) {
+    const ST = [
+      ["Zucker", true, ["#f6f3ec", "#d39a45", "#5a3415", "#1d1a17"], "Zucker schmilzt, wird braun wie Karamell und schließlich schwarz. Zurück bleibt <b>Kohlenstoff</b>."],
+      ["Holz", true, ["#dcbc8c", "#9a6a3a", "#3b2a1e", "#1d1a17"], "Holz qualmt und wird zu schwarzer <b>Holzkohle</b> – fast reiner Kohlenstoff."],
+      ["Mehl", true, ["#f3efe6", "#d8b47a", "#6a4423", "#1d1a17"], "Mehl wird erst braun, dann schwarz. Es enthält Stärke – und darin steckt <b>Kohlenstoff</b>."],
+      ["Papier", true, ["#fbfbf8", "#dcc38d", "#4a3626", "#1d1a17"], "Papier wird braun und dann schwarz. Es besteht aus Holzfasern – also aus <b>Kohlenstoffverbindungen</b>."],
+      ["Kochsalz", false, ["#ffffff", "#ffffff", "#fdfdfb", "#fbfbf8"], "Kochsalz knistert ein wenig, bleibt aber weiß. Es enthält <b>keinen Kohlenstoff</b>."],
+      ["Sand", false, ["#e3cf9c", "#e1cd99", "#dfcb97", "#dec995"], "Sand bleibt, wie er ist – auch bei großer Hitze. <b>Kein Kohlenstoff</b> drin."]
+    ];
+    el.innerHTML = `
+      <span class="eyebrow">Versuch</span>
+      <h3>Was wird schwarz?</h3>
+      <p class="klein">Wähle einen Stoff und erhitze ihn im Reagenzglas.</p>
+      <div class="chips stoffwahl">${ST.map((s, i) => `<button type="button" class="chip" data-i="${i}">${s[0]}</button>`).join("")}</div>
+      <svg viewBox="0 0 320 200" role="img" aria-label="Reagenzglas über einem Brenner">
+        <g class="vk-rauch">${[0, 1, 2].map(i => `<circle cx="${164 + i * 6}" cy="16" r="${5 + i * 2}" fill="#a39e94" style="animation-delay:${i * .5}s"/>`).join("")}</g>
+        <path d="M150 14 V136 a20 20 0 0 0 40 0 V14" fill="#eef6f8" stroke="#6A645B" stroke-width="2"/>
+        <path class="vk-stoff" d="M152 116 V136 a18 18 0 0 0 36 0 V116 z" fill="#f6f3ec"/>
+        <g class="vk-flamme" opacity="0">
+          <path d="M170 186 C157 172 161 162 170 152 C179 162 183 172 170 186z" fill="#5b9bc4"/>
+          <path d="M170 186 C165 177 166 170 170 164 C174 170 175 177 170 186z" fill="#d7ecf6"/>
+        </g>
+        <rect x="163" y="184" width="14" height="10" fill="#8a8f93"/>
+        <rect x="140" y="193" width="60" height="6" rx="2" fill="#6A645B"/>
+        <text class="lbl b vk-name" x="214" y="132">Zucker</text>
+        <path d="M210 128 H192" stroke="#6A645B" stroke-width="1"/>
+      </svg>
+      <p class="anim-text" aria-live="polite"></p>
+      <div class="steuer"><button type="button" class="knopf prim" data-h>🔥 Erhitzen</button></div>
+      <div class="vk-erg"><div><b>⚫ wird schwarz</b><span data-ja>–</span></div><div><b>⚪ bleibt hell</b><span data-nein>–</span></div></div>`;
+    const svg = $("svg", el), stoff = $(".vk-stoff", el), flamme = $(".vk-flamme", el), txt = $(".anim-text", el), knopf = $("[data-h]", el);
+    const ja = new Set(), nein = new Set();
+    let akt = 0, busy = false;
+    const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+    const mix = (a, b, t) => { const A = rgb(a), B = rgb(b); return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(",")})`; };
+    const waehle = i => {
+      if (busy) return; akt = i; stoff.setAttribute("fill", ST[i][2][0]); $(".vk-name", el).textContent = ST[i][0];
+      txt.innerHTML = `Im Reagenzglas liegt <b>${ST[i][0]}</b>. Tippe auf „Erhitzen“.`;
+      $$("[data-i]", el).forEach(b => b.classList.toggle("sel", +b.dataset.i === i));
+    };
+    knopf.onclick = () => {
+      if (busy) return; busy = true; knopf.disabled = true;
+      const s = ST[akt]; flamme.setAttribute("opacity", 1); txt.innerHTML = `${s[0]} wird erhitzt …`;
+      if (s[1]) svg.classList.add("raucht");
+      const ende = () => {
+        stoff.setAttribute("fill", s[2][3]); flamme.setAttribute("opacity", 0); svg.classList.remove("raucht");
+        (s[1] ? ja : nein).add(s[0]); $("[data-ja]", el).textContent = [...ja].join(", ") || "–"; $("[data-nein]", el).textContent = [...nein].join(", ") || "–";
+        txt.innerHTML = s[3] + (ja.size + nein.size === ST.length ? " <b>Alle Stoffe getestet!</b> Nur die organischen Stoffe werden schwarz." : "");
+        busy = false; knopf.disabled = false;
+      };
+      if (reduce) return ende();
+      const t0 = performance.now(), D = 2600;
+      const f = t => { const k = Math.min(1, (t - t0) / D), seg = Math.min(2, Math.floor(k * 3)), u = k * 3 - seg;
+        stoff.setAttribute("fill", mix(s[2][seg], s[2][seg + 1], Math.min(1, u))); if (k < 1 && el.isConnected) requestAnimationFrame(f); else ende(); };
+      requestAnimationFrame(f);
+    };
+    $$("[data-i]", el).forEach(b => b.onclick = () => waehle(+b.dataset.i));
+    waehle(0);
+  },
+
+  /* ---- Moleküle räumlich (zum Drehen) ---- */
+  modell3d(el) {
+    const r6 = (r, z = 0, off = 0) => [0, 1, 2, 3, 4, 5].map(k => [r * Math.cos(off + k * Math.PI / 3), r * Math.sin(off + k * Math.PI / 3), z]);
+    const M = {
+      methan: { name: "Methan", f: "CH₄",
+        atoms: [["C", 0, 0, 0], ["H", .63, .63, .63], ["H", .63, -.63, -.63], ["H", -.63, .63, -.63], ["H", -.63, -.63, .63]],
+        bonds: [[0, 1, 1], [0, 2, 1], [0, 3, 1], [0, 4, 1]],
+        flach: [[0, 0], [0, 1.15], [1.15, 0], [0, -1.15], [-1.15, 0]],
+        info: "Die vier Wasserstoff-Atome sitzen an den Ecken eines <b>Tetraeders</b>. Jeder Bindungswinkel beträgt <b>109,5°</b>.",
+        infoFlach: "So zeichnet man Methan auf Papier: flach, mit rechten Winkeln. In Wirklichkeit ist das Molekül <b>räumlich</b> gebaut – schalte zurück und dreh es!" },
+      ethen: { name: "Ethen", f: "C₂H₄",
+        atoms: [["C", -.67, 0, 0], ["C", .67, 0, 0], ["H", -1.24, .93, 0], ["H", -1.24, -.93, 0], ["H", 1.24, .93, 0], ["H", 1.24, -.93, 0]],
+        bonds: [[0, 1, 2], [0, 2, 1], [0, 3, 1], [1, 4, 1], [1, 5, 1]],
+        info: "Alle sechs Atome liegen in <b>einer Ebene</b>, die Winkel betragen etwa 120°. Um die <b>Doppelbindung</b> kann sich das Molekül nicht drehen.",
+        infoFlach: "Die Strukturformel von Ethen: zwei Striche zwischen den C-Atomen stehen für die <b>Doppelbindung</b>." },
+      ethin: { name: "Ethin", f: "C₂H₂",
+        atoms: [["H", -1.66, 0, 0], ["C", -.6, 0, 0], ["C", .6, 0, 0], ["H", 1.66, 0, 0]],
+        bonds: [[0, 1, 1], [1, 2, 3], [2, 3, 1]],
+        info: "Alle vier Atome liegen auf einer <b>geraden Linie</b> (180°). Die beiden C-Atome halten mit einer <b>Dreifachbindung</b> zusammen.",
+        infoFlach: "Die Strukturformel von Ethin: H–C≡C–H. Drei Striche stehen für die <b>Dreifachbindung</b>." },
+      benzol: { name: "Benzol", f: "C₆H₆",
+        atoms: [...r6(1.39).map(p => ["C", ...p]), ...r6(2.47).map(p => ["H", ...p])],
+        bonds: [[0, 1, "a"], [1, 2, "a"], [2, 3, "a"], [3, 4, "a"], [4, 5, "a"], [5, 0, "a"], [0, 6, 1], [1, 7, 1], [2, 8, 1], [3, 9, 1], [4, 10, 1], [5, 11, 1]],
+        kekule: [[0, 1], [2, 3], [4, 5]],
+        info: "Ein <b>flacher Sechsring</b>. Die Elektronen der Doppelbindungen sind gleichmäßig über den ganzen Ring verteilt (gestrichelt).",
+        infoFlach: "Die Strukturformel nach Kekulé: abwechselnd Einfach- und Doppelbindungen. Heute weiß man: Die Elektronen sind über den ganzen Ring verteilt – deshalb zeichnet man oft einen <b>Kreis</b> ins Sechseck." }
+    };
+    const m = M[el.dataset.set || "methan"], uid = "m3d" + Math.random().toString(36).slice(2, 7);
+    el.classList.add("m3d");
+    el.innerHTML = `
+      <span class="eyebrow">Molekül zum Drehen</span>
+      <h3>${m.name} (${m.f})</h3>
+      <svg viewBox="0 0 320 220" role="img" aria-label="Räumliches Modell von ${m.name}">
+        <defs>
+          <radialGradient id="${uid}C" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#7a7a7a"/><stop offset="1" stop-color="#1e1e1e"/></radialGradient>
+          <radialGradient id="${uid}H" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c9c9c9"/></radialGradient>
+        </defs>
+        <g class="m3d-bild"></g>
+        <text class="lbl m3d-tipp" x="160" y="212" text-anchor="middle">Zum Drehen über das Modell wischen</text>
+      </svg>
+      <p class="anim-text" aria-live="polite"></p>
+      <div class="steuer"><button type="button" class="knopf" data-rot>⏸ Anhalten</button><button type="button" class="knopf" data-fl>Strukturformel zeigen</button></div>`;
+    const svg = $("svg", el), g = $(".m3d-bild", el), txt = $(".anim-text", el), bRot = $("[data-rot]", el), bFl = $("[data-fl]", el);
+    let ax = .35, ay = .6, auto = !reduce, flach = false, ziehen = null;
+    const maxR = Math.max(...m.atoms.map(a => Math.hypot(a[1], a[2], a[3]))), S = Math.min(70, 88 / maxR), cx = 160, cy = 102;
+    const proj = a => {
+      const [x, y, z] = [a[1], a[2], a[3]];
+      const x1 = x * Math.cos(ay) + z * Math.sin(ay), z1 = -x * Math.sin(ay) + z * Math.cos(ay);
+      const y2 = y * Math.cos(ax) - z1 * Math.sin(ax), z2 = y * Math.sin(ax) + z1 * Math.cos(ax), p = 4 / (4 - z2 * .6);
+      return { x: cx + x1 * S * p, y: cy - y2 * S * p, z: z2, p };
+    };
+    const linien = (A, B, n, w, farbe, extra = "") => {
+      const dx = B.x - A.x, dy = B.y - A.y, L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L, off = n === 1 ? [0] : n === 2 ? [-3.2, 3.2] : [-5, 0, 5];
+      return off.map(o => `<line x1="${(A.x + nx * o).toFixed(1)}" y1="${(A.y + ny * o).toFixed(1)}" x2="${(B.x + nx * o).toFixed(1)}" y2="${(B.y + ny * o).toFixed(1)}" stroke="${farbe}" stroke-width="${w}" stroke-linecap="round"${extra}/>`).join("");
+    };
+    const zeichne3d = () => {
+      const P = m.atoms.map(proj), mitte = proj(["", 0, 0, 0]), teile = [];
+      m.bonds.forEach(([i, j, n]) => {
+        const A = P[i], B = P[j]; let s;
+        if (n === "a") {
+          const mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2, vx = mitte.x - mx, vy = mitte.y - my, vl = Math.hypot(vx, vy) || 1, o = 7;
+          const k = (Q, t) => ({ x: Q.x + (mx - Q.x) * t + vx / vl * o, y: Q.y + (my - Q.y) * t + vy / vl * o });
+          s = linien(A, B, 1, 4, "#8a8a8a") + linien(k(A, .3), k(B, .3), 1, 2.5, "#2C7D90", ' stroke-dasharray="3 3"');
+        } else s = linien(A, B, n, n === 1 ? 4 : 2.6, "#8a8a8a");
+        teile.push([(A.z + B.z) / 2 - .01, s]);
+      });
+      m.atoms.forEach((a, i) => { const Q = P[i], r = (a[0] === "C" ? 15 : 10) * Q.p;
+        teile.push([Q.z, `<circle cx="${Q.x.toFixed(1)}" cy="${Q.y.toFixed(1)}" r="${r.toFixed(1)}" fill="url(#${uid}${a[0]})" stroke="${a[0] === "C" ? "#111" : "#9a9a9a"}" stroke-width="1"/><text x="${Q.x.toFixed(1)}" y="${(Q.y + 3.6 * Q.p).toFixed(1)}" text-anchor="middle" font-family="sans-serif" font-size="${(10 * Q.p).toFixed(1)}" font-weight="600" fill="${a[0] === "C" ? "#fff" : "#555"}">${a[0]}</text>`]); });
+      teile.sort((a, b) => a[0] - b[0]); g.innerHTML = teile.map(t => t[1]).join("");
+    };
+    const zeichneFlach = () => {
+      const L = 46, pos = m.flach ? m.flach.map(([x, y]) => ({ x: cx + x * L, y: cy - y * L })) : m.atoms.map(a => ({ x: cx + a[1] * S * .85, y: cy - a[2] * S * .85 }));
+      const kek = m.kekule ? m.kekule.map(String) : [];
+      let s = m.bonds.map(([i, j, n]) => { const A = pos[i], B = pos[j], dx = B.x - A.x, dy = B.y - A.y, Ln = Math.hypot(dx, dy), k = 12 / Ln;
+        const A2 = { x: A.x + dx * k, y: A.y + dy * k }, B2 = { x: B.x - dx * k, y: B.y - dy * k };
+        const nn = n === "a" ? (kek.includes(String([i, j])) ? 2 : 1) : n; return linien(A2, B2, nn, 2, "#33302B"); }).join("");
+      s += m.atoms.map((a, i) => `<text x="${pos[i].x.toFixed(1)}" y="${(pos[i].y + 7).toFixed(1)}" text-anchor="middle" class="lewis-sym klein-sym" style="font-size:20px">${a[0]}</text>`).join("");
+      g.innerHTML = s;
+    };
+    const zeichne = () => flach ? zeichneFlach() : zeichne3d();
+    const lauf = () => { if (!el.isConnected) return; if (auto && !flach && !ziehen) { ay += .012; zeichne3d(); } requestAnimationFrame(lauf); };
+    svg.addEventListener("pointerdown", e => { if (flach) return; ziehen = { x: e.clientX, y: e.clientY }; svg.setPointerCapture(e.pointerId); });
+    svg.addEventListener("pointermove", e => { if (!ziehen) return; ay += (e.clientX - ziehen.x) * .012; ax += (e.clientY - ziehen.y) * .012; ziehen = { x: e.clientX, y: e.clientY }; zeichne3d(); });
+    const los = () => { ziehen = null; }; svg.addEventListener("pointerup", los); svg.addEventListener("pointercancel", los);
+    bRot.onclick = () => { auto = !auto; bRot.textContent = auto ? "⏸ Anhalten" : "⟳ Drehen"; };
+    bFl.onclick = () => { flach = !flach; bFl.textContent = flach ? "Raummodell zeigen" : "Strukturformel zeigen"; bRot.disabled = flach;
+      $(".m3d-tipp", el).style.display = flach ? "none" : ""; txt.innerHTML = flach ? m.infoFlach : m.info; zeichne(); };
+    if (reduce) bRot.textContent = "⟳ Drehen";
+    txt.innerHTML = m.info; zeichne(); requestAnimationFrame(lauf);
+  },
+
+  /* ---- Methan verbrennt ---- */
+  verbrennung(el) {
+    const A = { C: ["#33302B", "#fff", 13.5], H: ["#fff", "#555", 9], O: ["#d9534f", "#fff", 12.5] };
+    const AT = [
+      ["C", 55, 85, 236, 60, 236, 54], ["H", 55, 59, 194, 126, 194, 126], ["H", 81, 85, 234, 126, 234, 126], ["H", 55, 111, 262, 126, 262, 126], ["H", 29, 85, 302, 126, 302, 126],
+      ["O", 118, 68, 208, 60, 214, 112], ["O", 144, 68, 264, 60, 282, 112], ["O", 118, 106, 214, 112, null, null], ["O", 144, 106, 282, 112, null, null]
+    ];
+    const L = (a, b, c, d, cls, dbl) => dbl
+      ? [-3, 3].map(o => `<line class="${cls}" x1="${a}" y1="${b + o}" x2="${c}" y2="${d + o}" stroke="#6A645B" stroke-width="2"/>`).join("")
+      : `<line class="${cls}" x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#6A645B" stroke-width="2"/>`;
+    el.innerHTML = `
+      <span class="eyebrow">Teilchenmodell</span>
+      <h3>Methan verbrennt</h3>
+      <svg viewBox="4 28 332 140" role="img" aria-label="Verbrennung von Methan im Teilchenmodell">
+        <ellipse class="vb-glut" cx="170" cy="88" rx="80" ry="52" fill="#ffb347"/>
+        ${L(55, 85, 55, 59, "vb-ed")}${L(55, 85, 81, 85, "vb-ed")}${L(55, 85, 55, 111, "vb-ed")}${L(55, 85, 29, 85, "vb-ed")}
+        ${L(118, 68, 144, 68, "vb-ed", 1)}<g class="vb-o2b">${L(118, 106, 144, 106, "vb-ed", 1)}</g>
+        <g class="vb-pr voll">${L(208, 60, 264, 60, "", 1)}${L(214, 112, 194, 126)}${L(214, 112, 234, 126)}${L(282, 112, 262, 126)}${L(282, 112, 302, 126)}</g>
+        <g class="vb-pr wenig">${L(214, 112, 194, 126)}${L(214, 112, 234, 126)}${L(282, 112, 262, 126)}${L(282, 112, 302, 126)}</g>
+        <text class="lbl b" x="170" y="95" text-anchor="middle" style="font-size:24px">→</text>
+        ${AT.map((a, i) => `<g class="vb-at" data-i="${i}" style="transform:translate(${a[1]}px,${a[2]}px)"><circle r="${A[a[0]][2]}" fill="${A[a[0]][0]}" stroke="#6A645B" stroke-width="1"/><text y="4" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="${A[a[0]][1]}">${a[0]}</text></g>`).join("")}
+        <text class="lbl b vb-links" x="86" y="156" text-anchor="middle" style="font-size:13px">CH₄ + 2 O₂</text>
+        <text class="lbl b vb-rechts" x="250" y="156" text-anchor="middle" opacity="0" style="font-size:13px">CO₂ + 2 H₂O</text>
+        <text class="lbl vb-russ" x="236" y="40" text-anchor="middle" opacity="0">Ruß</text>
+      </svg>
+      <p class="anim-text" aria-live="polite"></p>
+      <div class="steuer"><button type="button" class="knopf prim" data-z>🔥 Zünden</button><button type="button" class="knopf" data-w>Mit wenig Sauerstoff</button><button type="button" class="knopf" data-r>↺</button></div>`;
+    const svg = $("svg", el), txt = $(".anim-text", el), at = $$(".vb-at", el);
+    let wenig = false;
+    const T0 = "Links ein Methan-Molekül und zwei Sauerstoff-Moleküle. Tippe auf „Zünden“ und beobachte, wohin die Atome wandern.";
+    const reset = () => {
+      svg.classList.remove("verbrannt", "voll", "wenig");
+      at.forEach((g, i) => { const a = AT[i]; g.style.transform = `translate(${a[1]}px,${a[2]}px)`; g.style.opacity = wenig && i >= 7 ? 0 : 1; });
+      $(".vb-o2b", el).style.opacity = wenig ? 0 : 1;
+      $(".vb-links", el).textContent = wenig ? "CH₄ + O₂" : "CH₄ + 2 O₂"; $(".vb-rechts", el).setAttribute("opacity", 0); $(".vb-russ", el).setAttribute("opacity", 0);
+      $("[data-w]", el).textContent = wenig ? "Mit genug Sauerstoff" : "Mit wenig Sauerstoff"; $("[data-z]", el).disabled = false;
+      txt.innerHTML = wenig ? "Jetzt ist nur ein Sauerstoff-Molekül da – zu wenig für eine vollständige Verbrennung. Was passiert?" : T0;
+    };
+    $("[data-z]", el).onclick = () => {
+      svg.classList.add("verbrannt", wenig ? "wenig" : "voll"); $("[data-z]", el).disabled = true;
+      at.forEach((g, i) => { const a = AT[i]; if (wenig && i >= 7) return; const x = wenig ? a[5] : a[3], y = wenig ? a[6] : a[4]; g.style.transform = `translate(${x}px,${y}px)`; });
+      const r = $(".vb-rechts", el); r.textContent = wenig ? "C + 2 H₂O" : "CO₂ + 2 H₂O"; setTimeout(() => { r.setAttribute("opacity", 1); if (wenig) $(".vb-russ", el).setAttribute("opacity", 1); }, reduce ? 0 : 1300);
+      txt.innerHTML = wenig
+        ? "Der Sauerstoff reicht nur für den Wasserstoff: Es entsteht Wasser – der Kohlenstoff bleibt übrig als schwarzer <b>Ruß</b>. Darum rußt eine Flamme, die zu wenig Luft bekommt."
+        : "Die Atome verbinden sich neu: Es entstehen <b>Kohlenstoffdioxid</b> und <b>Wasser</b>, dabei wird viel Energie frei. Zähl nach: links und rechts je 1 C, 4 H und 4 O – <b>kein Atom geht verloren</b>.";
+    };
+    $("[data-w]", el).onclick = () => { wenig = !wenig; reset(); };
+    $("[data-r]", el).onclick = reset;
+    reset();
+  },
+
+  /* ---- Die Alkan-Leiter ---- */
+  alkanleiter(el) {
+    const N = ["Methan", "Ethan", "Propan", "Butan", "Pentan", "Hexan", "Heptan", "Octan", "Nonan", "Decan", "Undecan", "Dodecan", "Tridecan", "Tetradecan", "Pentadecan", "Hexadecan", "Heptadecan", "Octadecan", "Nonadecan", "Eicosan"];
+    const SD = [-161.5, -88.6, -42.1, -0.5, 36.1, 68.7, 98.4, 125.7, 150.8, 174.1, 195.9, 216.3, 235.4, 253.6, 270.6, 286.9, 302, 316.3, 329.9, 343];
+    const SM = [-182.5, -182.8, -187.7, -138.3, -129.7, -95.3, -90.6, -56.8, -53.5, -29.7, -25.6, -9.6, -5.4, 5.9, 9.9, 18.2, 22, 28.2, 32, 36.7];
+    const sub = n => String(n).replace(/\d/g, d => "₀₁₂₃₄₅₆₇₈₉"[d]);
+    const grad = t => (t < 0 ? "−" : "") + String(Math.abs(t)).replace(".", ",") + " °C";
+    const nutzen = n => n === 1 ? "Hauptbestandteil von Erdgas – zum Heizen und Kochen" : n === 2 ? "steckt in kleinen Mengen im Erdgas" : n === 3 ? "Flüssiggas für Gasgrill und Campingkocher"
+      : n === 4 ? "Feuerzeuggas und Campinggas" : n <= 10 ? "Bestandteil von Benzin" : n <= 15 ? "Bestandteil von Kerosin und Diesel" : n === 16 ? "Bestandteil von Diesel und Heizöl" : "Paraffin – z. B. in Kerzenwachs (dort noch längere Ketten)";
+    const X = n => 34 + (n - 1) * 14, Y = t => 236 - (t + 200) / 560 * 118;
+    el.innerHTML = `
+      <span class="eyebrow">Ausprobieren</span>
+      <h3>Die Alkan-Leiter</h3>
+      <label class="klein" for="al-r">Anzahl der Kohlenstoff-Atome: <b class="al-n">1</b></label>
+      <input id="al-r" class="regler" type="range" min="1" max="20" value="1">
+      <svg viewBox="0 0 320 250" role="img" aria-label="Alkan-Molekül und Siedetemperaturen">
+        <g class="al-mol"></g>
+        <line x1="30" y1="${Y(20)}" x2="306" y2="${Y(20)}" stroke="#3B8A5A" stroke-width="1" stroke-dasharray="4 3"/>
+        <text class="lbl" x="306" y="${Y(20) - 4}" text-anchor="end" fill="#3B8A5A">20 °C (Zimmertemperatur)</text>
+        <polyline points="${SD.map((t, i) => `${X(i + 1)},${Y(t).toFixed(1)}`).join(" ")}" fill="none" stroke="#C28A3A" stroke-width="2"/>
+        <polyline points="${SM.map((t, i) => `${X(i + 1)},${Y(t).toFixed(1)}`).join(" ")}" fill="none" stroke="#2C7D90" stroke-width="2"/>
+        <line class="al-mark" x1="0" y1="112" x2="0" y2="238" stroke="#33302B" stroke-width="1"/>
+        <circle class="al-ps" r="4" fill="#C28A3A"/><circle class="al-pm" r="4" fill="#2C7D90"/>
+        <text class="lbl" x="34" y="248">1 C</text><text class="lbl" x="300" y="248" text-anchor="end">20 C</text>
+      </svg>
+      <div class="legende"><span style="--c:#C28A3A">Siedetemperatur</span><span style="--c:#2C7D90">Schmelztemperatur</span></div>
+      <dl class="al-info"></dl>`;
+    const mol = $(".al-mol", el), info = $(".al-info", el), r = $("input", el);
+    const zeige = n => {
+      const s = Math.min(34, 270 / Math.max(n - 1, 1)), x0 = 160 - s * (n - 1) / 2, rc = Math.max(4, Math.min(9, s * .3)), rh = rc * .62, d = rc * 2 + 3;
+      let b = "", a = "";
+      const H = (x, y, hx, hy) => { b += `<line x1="${x}" y1="${y}" x2="${hx}" y2="${hy}" stroke="#9a958c" stroke-width="1"/>`; a += `<circle cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="${rh.toFixed(1)}" fill="#fff" stroke="#9a958c"/>`; };
+      for (let i = 0; i < n; i++) {
+        const x = x0 + i * s, y = 50 + (n > 1 ? (i % 2 ? 6 : -6) : 0);
+        if (i < n - 1) b += `<line x1="${x}" y1="${y}" x2="${x + s}" y2="${50 + ((i + 1) % 2 ? 6 : -6)}" stroke="#33302B" stroke-width="2"/>`;
+        H(x, y, x, y - d); H(x, y, x, y + d);
+        if (i === 0) H(x, y, x - d, y); if (i === n - 1) H(x, y, x + d, y);
+        a += `<circle cx="${x.toFixed(1)}" cy="${y}" r="${rc.toFixed(1)}" fill="#33302B"/>`;
+      }
+      mol.innerHTML = b + a;
+      const sd = SD[n - 1], sm = SM[n - 1], z = sd < 20 ? ["gasförmig", "💨"] : sm > 20 ? ["fest", "🧱"] : ["flüssig", "💧"];
+      $(".al-n", el).textContent = n;
+      $(".al-mark", el).setAttribute("x1", X(n)); $(".al-mark", el).setAttribute("x2", X(n));
+      $(".al-ps", el).setAttribute("cx", X(n)); $(".al-ps", el).setAttribute("cy", Y(sd)); $(".al-pm", el).setAttribute("cx", X(n)); $(".al-pm", el).setAttribute("cy", Y(sm));
+      info.innerHTML = `<dt>Name</dt><dd>${N[n - 1]}</dd><dt>Formel</dt><dd>C${n > 1 ? sub(n) : ""}H${sub(2 * n + 2)}</dd>
+        <dt>Siedetemperatur</dt><dd>${grad(sd)}</dd><dt>Schmelztemperatur</dt><dd>${grad(sm)}</dd>
+        <dt>Bei 20 °C</dt><dd>${z[1]} ${z[0]}</dd><dt>Verwendung</dt><dd>${nutzen(n)}</dd>`;
+    };
+    r.oninput = () => zeige(+r.value);
+    zeige(1);
+  },
+
+  /* ---- Die Raffinerie ---- */
+  raffinerie(el) {
+    const F = [
+      ["Gas", "C₁ bis C₄", "unter 30 °C", "Heizgas, Flüssiggas für Campingkocher, Rohstoff für Kunststoffe", "#9ecae1", 46],
+      ["Benzin", "C₅ bis C₁₀", "30 bis 180 °C", "Treibstoff für Autos, Rohstoff für die Chemie-Industrie", "#f4c542", 86],
+      ["Kerosin", "C₁₀ bis C₁₆", "180 bis 250 °C", "Treibstoff für Flugzeuge", "#ee964b", 126],
+      ["Diesel und Heizöl", "C₁₄ bis C₂₀", "250 bis 350 °C", "Treibstoff für Lkw und Traktoren, Heizöl für Heizungen", "#c8553d", 166, "Diesel/Heizöl"],
+      ["Rückstand", "über C₂₀", "über 350 °C", "Schmieröl, Paraffin für Kerzen, Bitumen für den Straßenbau", "#5c3d2e", 214]
+    ];
+    el.innerHTML = `
+      <span class="eyebrow">Ausprobieren</span>
+      <h3>Im Destillationsturm</h3>
+      <p class="klein">Heize den Ofen an und tippe auf eine Etage im Turm.</p>
+      <svg viewBox="0 0 320 250" role="img" aria-label="Destillationsturm einer Raffinerie">
+        <defs><linearGradient id="raff-t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ecae1"/><stop offset="1" stop-color="#d9534f"/></linearGradient></defs>
+        <rect x="96" y="24" width="8" height="164" rx="4" fill="url(#raff-t)"/>
+        <text class="lbl" x="90" y="32" text-anchor="end">≈ 30 °C</text><text class="lbl" x="90" y="186" text-anchor="end">≈ 350 °C</text>
+        <rect x="112" y="18" width="76" height="214" rx="14" fill="#eef1f2" stroke="#6A645B" stroke-width="2"/>
+        ${F.map((f, i) => `<g class="raff-tray" data-f="${i}" tabindex="0" role="button" aria-label="${f[0]}">
+          <rect class="hl" x="114" y="${f[5] - 18}" width="72" height="${i === 4 ? 30 : 36}" fill="transparent" rx="6"/>
+          ${i < 4 ? `<line x1="114" y1="${f[5] + 20}" x2="186" y2="${f[5] + 20}" stroke="#9a958c" stroke-width="2" stroke-dasharray="6 4"/>` : ""}
+          <path d="M188 ${f[5]} H222" stroke="${f[4]}" stroke-width="5"/>
+          <rect x="222" y="${f[5] - 9}" width="12" height="18" rx="2" fill="${f[4]}"/>
+          <text class="lbl b" x="240" y="${f[5] + 4}">${f[6] || f[0]}</text></g>`).join("")}
+        <g class="raff-teile"></g>
+        <rect x="10" y="196" width="46" height="36" rx="4" fill="#8a8f93"/>
+        <g class="raff-feuer" opacity="0" transform="translate(-14 0)"><path d="M36 228 C30 218 36 210 42 204 C44 212 50 214 49 222 C52 218 56 214 58 208 C64 216 64 224 60 228z" fill="#ee964b"/></g>
+        <path d="M56 214 H112" stroke="#33302B" stroke-width="5"/>
+        <text class="lbl" x="33" y="246" text-anchor="middle">Ofen</text><text class="lbl" x="84" y="207" text-anchor="middle">Rohöl</text>
+      </svg>
+      <p class="anim-text" aria-live="polite"></p>
+      <div class="steuer"><button type="button" class="knopf prim" data-o>🔥 Ofen an</button></div>`;
+    const svg = $("svg", el), teile = $(".raff-teile", el), txt = $(".anim-text", el);
+    let an = false, P = [], last = 0;
+    const T0 = "Im Ofen wird Rohöl auf etwa 400 °C erhitzt. Der Dampf steigt im Turm nach oben und kühlt dabei ab. Jeder Stoff wird dort wieder flüssig, wo es kalt genug für ihn ist.";
+    const zeige = i => { const f = F[i];
+      $$(".raff-tray", el).forEach(t => t.classList.toggle("aktiv", +t.dataset.f === i));
+      txt.innerHTML = `<b>${f[0]}</b> · Kettenlänge ${f[1]} · Siedebereich ${f[2]}<br>Verwendung: ${f[3]}.${i === 0 ? " Was am leichtesten siedet, steigt ganz nach oben." : i === 4 ? " Was nicht verdampft, bleibt unten im Turm." : ""}`; };
+    const schritt = t => {
+      if (!el.isConnected) return;
+      if (an && t - last > 260) { last = t; const f = Math.floor(Math.random() * 5); P.push({ f, x: 124 + Math.random() * 52, y: 222, ziel: F[f][5] + 4, a: 1, raus: false }); }
+      P.forEach(p => { if (p.y > p.ziel) p.y -= 1.1; else if (!p.raus) p.raus = true; if (p.raus) { p.x += 1.2; if (p.x > 186) p.a -= .05; } });
+      P = P.filter(p => p.a > 0);
+      teile.innerHTML = P.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="${F[p.f][4]}" opacity="${p.a.toFixed(2)}"/>`).join("");
+      if (an || P.length) requestAnimationFrame(schritt);
+    };
+    $("[data-o]", el).onclick = () => { an = !an; $(".raff-feuer", el).setAttribute("opacity", an ? 1 : 0);
+      $("[data-o]", el).textContent = an ? "⏸ Ofen aus" : "🔥 Ofen an"; if (an && !reduce) requestAnimationFrame(schritt); if (an) txt.innerHTML = T0; };
+    $$(".raff-tray", el).forEach(t => { t.onclick = () => zeige(+t.dataset.f); t.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); zeige(+t.dataset.f); } }; });
+    txt.innerHTML = T0;
+  },
+
+  /* ---- Isomere bauen ---- */
+  isomere(el) {
+    const STAMM = { 3: "Propan", 4: "Butan", 5: "Pentan", 6: "Hexan" };
+    const SD = { "Propan": -42.1, "Butan": -0.5, "2-Methylpropan": -11.7, "Pentan": 36.1, "2-Methylbutan": 27.8, "2,2-Dimethylpropan": 9.5, "Hexan": 68.7,
+      "2-Methylpentan": 60.3, "3-Methylpentan": 63.3, "2,2-Dimethylbutan": 49.7, "2,3-Dimethylbutan": 58, "2-Methylhexan": 90, "3-Methylhexan": 92,
+      "2,2-Dimethylpentan": 79.2, "2,3-Dimethylpentan": 89.8, "2,4-Dimethylpentan": 80.5, "3,3-Dimethylpentan": 86.1, "2,2,3-Trimethylbutan": 80.9 };
+    const ALLE = { 4: ["Butan", "2-Methylpropan"], 5: ["Pentan", "2-Methylbutan", "2,2-Dimethylpropan"], 6: ["Hexan", "2-Methylpentan", "3-Methylpentan", "2,2-Dimethylbutan", "2,3-Dimethylbutan"] };
+    const ANZ = { 3: 1, 4: 2, 5: 3, 6: 5, 7: 9, 8: 18, 9: 35 };
+    const sub = n => String(n).replace(/\d/g, d => "₀₁₂₃₄₅₆₇₈₉"[d]);
+    const gef = { 4: new Set(), 5: new Set(), 6: new Set() };
+    let n = 5, c = {};
+    el.innerHTML = `
+      <span class="eyebrow">Molekül-Baukasten</span>
+      <h3>Finde alle Isomere</h3>
+      <p class="klein">Wähle eine Hauptkette. Tippe dann auf ein inneres C-Atom, um eine CH₃-Gruppe (Methyl) anzuhängen. Die H-Atome sind weggelassen.</p>
+      <div class="chips stoffwahl">${[3, 4, 5, 6].map(k => `<button type="button" class="chip" data-n="${k}">${STAMM[k]}</button>`).join("")}</div>
+      <svg viewBox="0 0 320 200" role="img" aria-label="Kohlenstoff-Gerüst"></svg>
+      <div class="iso-name"></div>
+      <p class="anim-text" aria-live="polite"></p>
+      <div class="steuer"><button type="button" class="knopf" data-r>↺ Ohne Seitenketten</button></div>`;
+    const svg = $("svg", el), txt = $(".anim-text", el);
+    const name = () => {
+      const L = []; Object.entries(c).forEach(([p, k]) => { for (let i = 0; i < k; i++) L.push(+p); }); L.sort((a, b) => a - b);
+      if (!L.length) return { name: STAMM[n], rechts: false, k: 0 };
+      const M = L.map(p => n + 1 - p).sort((a, b) => a - b);
+      let rechts = false; for (let i = 0; i < L.length; i++) { if (M[i] !== L[i]) { rechts = M[i] < L[i]; break; } }
+      const loc = rechts ? M : L, pre = ["", "", "Di", "Tri", "Tetra"][L.length];
+      return { name: `${loc.join(",")}-${pre}${pre ? "methyl" : "Methyl"}${STAMM[n].toLowerCase()}`, rechts, k: L.length };
+    };
+    const zeichne = () => {
+      const s = 50, x0 = 160 - s * (n - 1) / 2, y = 100, info = name(); let b = "", a = "";
+      for (let i = 1; i <= n; i++) {
+        const x = x0 + (i - 1) * s, inner = i > 1 && i < n, k = c[i] || 0;
+        if (i < n) b += `<line x1="${x}" y1="${y}" x2="${x + s}" y2="${y}" stroke="#33302B" stroke-width="3"/>`;
+        [[-1, 1], [1, 2]].forEach(([d, nr]) => { if (k >= nr) { b += `<line x1="${x}" y1="${y}" x2="${x}" y2="${y + d * 52}" stroke="#33302B" stroke-width="3"/>`;
+          a += `<circle cx="${x}" cy="${y + d * 52}" r="14" fill="#C28A3A"/><text x="${x}" y="${y + d * 52 + 4}" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">CH₃</text>`; } });
+        a += `<g class="${inner ? "iso-c" : ""}" data-p="${i}" ${inner ? 'tabindex="0" role="button" aria-label="C-Atom ' + i + '"' : ""}>
+          ${inner && k < 2 ? `<circle cx="${x}" cy="${y}" r="20" fill="none" stroke="#2C7D90" stroke-width="1.5" stroke-dasharray="3 3"/>` : ""}
+          <circle cx="${x}" cy="${y}" r="15" fill="#33302B"/><text x="${x}" y="${y + 5}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#fff">C</text></g>`;
+        const nr = info.rechts ? n + 1 - i : i;
+        a += `<text class="lbl" x="${x + 15}" y="${y + 24}" fill="#2C7D90">${nr}</text>`;
+      }
+      svg.innerHTML = b + a;
+      $$(".iso-c", svg).forEach(g => { const f = () => klick(+g.dataset.p); g.onclick = f; g.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); f(); } }; });
+      const C = n + info.k, sd = SD[info.name];
+      if (gef[C]) gef[C].add(info.name);
+      const liste = gef[C] ? `<div class="iso-liste">C${sub(C)}H${sub(2 * C + 2)} hat ${ANZ[C]} Isomere. Gefunden: ${ALLE[C].map(x => `<span class="${gef[C].has(x) ? "ja" : ""}">${gef[C].has(x) ? x : "?"}</span>`).join("")}</div>`
+        : ANZ[C] === 1 ? `<div class="iso-liste">Von C${sub(C)}H${sub(2 * C + 2)} gibt es nur ein einziges Molekül – keine Isomere.</div>`
+        : `<div class="iso-liste">C${sub(C)}H${sub(2 * C + 2)} hat insgesamt ${ANZ[C]} Isomere.</div>`;
+      $(".iso-name", el).innerHTML = `<b>${info.name}</b><span>Summenformel C${sub(C)}H${sub(2 * C + 2)}${sd !== undefined ? ` · siedet bei ${String(sd).replace(".", ",").replace("-", "−")} °C` : ""}</span>${liste}`;
+      $$("[data-n]", el).forEach(x => x.classList.toggle("sel", +x.dataset.n === n));
+      return info;
+    };
+    const klick = p => {
+      const tot = Object.values(c).reduce((a, b) => a + b, 0), k = c[p] || 0;
+      c[p] = (k >= 2 || tot >= 3) ? 0 : k + 1; if (!c[p]) delete c[p];
+      const info = zeichne(), C = n + info.k;
+      txt.innerHTML = info.k === 0 ? `Eine gerade Kette: <b>${STAMM[n]}</b>.`
+        : `${info.rechts ? "Von rechts gezählt, damit die Zahlen möglichst klein werden. " : ""}Name: <b>${info.name}</b>.` +
+          (gef[C] && gef[C].size === ALLE[C].length ? ` <b>Super – alle ${ALLE[C].length} Isomere von C${sub(C)}H${sub(2 * C + 2)} gefunden!</b>` : "");
+    };
+    $$("[data-n]", el).forEach(b => b.onclick = () => { n = +b.dataset.n; c = {}; zeichne(); txt.innerHTML = `Hauptkette <b>${STAMM[n]}</b>. Tippe auf ein inneres C-Atom (gestrichelter Kreis).`; });
+    $("[data-r]", el).onclick = () => { c = {}; zeichne(); txt.innerHTML = `Wieder eine gerade Kette: <b>${STAMM[n]}</b>.`; };
+    zeichne(); txt.innerHTML = "Tipp: Finde alle drei Isomere mit der Formel C₅H₁₂. Eins hast du schon – die gerade Kette Pentan.";
+  },
+
+  /* ---- Ringe ---- */
+  ringe(el) {
+    const NA = { 3: "Cyclopropan", 4: "Cyclobutan", 5: "Cyclopentan", 6: "Cyclohexan", 7: "Cycloheptan", 8: "Cyclooctan" };
+    const SP = { 3: 115, 4: 110, 5: 26, 6: 0, 7: 26, 8: 40 }, SDP = { 3: -33, 4: 12, 5: 49, 6: 81, 7: 118, 8: 149 };
+    const sub = n => String(n).replace(/\d/g, d => "₀₁₂₃₄₅₆₇₈₉"[d]);
+    el.innerHTML = `
+      <span class="eyebrow">Ausprobieren</span>
+      <h3>Ringe unter Spannung</h3>
+      <label class="klein" for="rg-r">Ringgröße: <b class="rg-n">3</b> Kohlenstoff-Atome</label>
+      <input id="rg-r" class="regler" type="range" min="3" max="8" value="3">
+      <svg viewBox="0 0 320 210" role="img" aria-label="Ringförmiges Molekül"></svg>
+      <dl class="al-info rg-info"></dl>
+      <p class="anim-text" aria-live="polite"></p>`;
+    const svg = $("svg", el), txt = $(".anim-text", el), info = $(".rg-info", el);
+    const zeige = n => {
+      const R = Math.min(70 / (2 * Math.sin(Math.PI / n)), 72), cx = n === 6 ? 118 : 150, cy = 108, P = [];
+      for (let k = 0; k < n; k++) { const w = -Math.PI / 2 + k * 2 * Math.PI / n; P.push([cx + R * Math.cos(w), cy + R * Math.sin(w), w]); }
+      let b = "", a = "";
+      P.forEach(([x, y, w], k) => { const [x2, y2] = P[(k + 1) % n]; b += `<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#33302B" stroke-width="3"/>`;
+        [-.42, .42].forEach(d => { const hx = x + 24 * Math.cos(w + d), hy = y + 24 * Math.sin(w + d); b += `<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="#9a958c" stroke-width="1.2"/>`; a += `<circle cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="5.5" fill="#fff" stroke="#9a958c"/>`; });
+        a += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="10" fill="#33302B"/>`; });
+      const winkel = 180 * (n - 2) / n, [vx, vy] = P[0], w1 = Math.atan2(P[1][1] - vy, P[1][0] - vx), w2 = Math.atan2(P[n - 1][1] - vy, P[n - 1][0] - vx), rr = 20;
+      const farbe = SP[n] > 80 ? "#B23B2E" : SP[n] > 10 ? "#C28A3A" : "#3B8A5A";
+      b += `<path d="M${(vx + rr * Math.cos(w1)).toFixed(1)} ${(vy + rr * Math.sin(w1)).toFixed(1)} A${rr} ${rr} 0 0 1 ${(vx + rr * Math.cos(w2)).toFixed(1)} ${(vy + rr * Math.sin(w2)).toFixed(1)}" fill="none" stroke="${farbe}" stroke-width="3"/>`;
+      a += `<text class="lbl b" x="${vx}" y="${(vy + Math.min(36, R * .95)).toFixed(1)}" text-anchor="middle" fill="${farbe}">${String(Math.round(winkel * 10) / 10).replace(".", ",")}°</text>`;
+      if (n === 6) a += `<g transform="translate(226 92)"><polyline points="0,18 18,4 40,12 58,0 76,14 58,28 40,20 18,32 0,18" fill="none" stroke="#33302B" stroke-width="2.5" stroke-linejoin="round"/>${[[0, 18], [18, 4], [40, 12], [58, 0], [76, 14], [58, 28], [40, 20], [18, 32]].slice(0, 6).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4" fill="#33302B"/>`).join("")}<text class="lbl" x="38" y="54" text-anchor="middle">Sesselform</text></g>`;
+      svg.innerHTML = b + a;
+      $(".rg-n", el).textContent = n;
+      const sp = SP[n], stufe = sp > 80 ? "hoch" : sp > 10 ? "gering" : "keine";
+      info.innerHTML = `<dt>Name</dt><dd>${NA[n]}</dd><dt>Formel</dt><dd>C${sub(n)}H${sub(2 * n)}</dd><dt>Winkel (flach)</dt><dd>${String(Math.round(winkel * 10) / 10).replace(".", ",")}° (ideal: 109,5°)</dd>
+        <dt>Ringspannung</dt><dd><span class="spannung"><i style="width:${Math.max(4, sp / 115 * 100)}%;background:${farbe}"></i></span> ${stufe}</dd>
+        <dt>Siedetemperatur</dt><dd>${SDP[n] < 0 ? "−" : ""}${Math.abs(SDP[n])} °C – bei 20 °C ${SDP[n] < 20 ? "gasförmig" : "flüssig"}</dd>`;
+      txt.innerHTML = n === 3 ? "Im Dreiring sind die Bindungen auf <b>60°</b> zusammengedrückt – fast nur halb so viel wie die bequemen 109,5°. Das Molekül steht unter großer Spannung und reagiert leicht."
+        : n === 4 ? "Auch der Vierring ist noch stark gespannt: <b>90°</b> statt 109,5°."
+        : n === 5 ? "Der Fünfring kommt mit <b>108°</b> fast an 109,5° heran. Er faltet sich leicht und ist kaum gespannt."
+        : n === 6 ? "Flach wären es 120°. Doch der Sechsring faltet sich zur <b>Sesselform</b> – so kommen alle Winkel auf 109,5°. Cyclohexan ist <b>spannungsfrei</b>."
+        : "Größere Ringe falten sich ebenfalls. Leicht gespannt sind sie trotzdem, weil sich die Wasserstoff-Atome im Ring in die Quere kommen.";
+    };
+    const r = $("input", el); r.oninput = () => zeige(+r.value); zeige(3);
+  },
+
+  /* ---- Der Brom-Test ---- */
+  bromtest(el) {
+    const BROM = "#b5541c", KLAR = "#f1ede0";
+    el.innerHTML = `
+      <span class="eyebrow">Versuch</span>
+      <h3>Hexan oder Hexen?</h3>
+      <svg viewBox="0 0 320 210" role="img" aria-label="Zwei Reagenzgläser mit Hexan und Hexen">
+        <g class="bt-lampe"><circle cx="160" cy="34" r="14" fill="#ffd54a"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(k => { const w = k * Math.PI / 4; return `<line x1="${(160 + 18 * Math.cos(w)).toFixed(1)}" y1="${(34 + 18 * Math.sin(w)).toFixed(1)}" x2="${(160 + 26 * Math.cos(w)).toFixed(1)}" y2="${(34 + 26 * Math.sin(w)).toFixed(1)}" stroke="#e0a800" stroke-width="2"/>`; }).join("")}</g>
+        <g class="bt-dampf">${[0, 1, 2].map(i => `<circle cx="${84 + i * 6}" cy="40" r="${4 + i}" fill="#e7d3c4" style="animation-delay:${i * .6}s"/>`).join("")}</g>
+        <rect class="bt-papier" x="76" y="20" width="10" height="26" rx="2" fill="#c9dfc3"/>
+        ${[[90, "Hexan", "C₆H₁₄", "a"], [230, "Hexen", "C₆H₁₂", "e"]].map(([x, n, f, k]) => `
+          <path d="M${x - 18} 50 V156 a18 18 0 0 0 36 0 V50" fill="#f4f8f9" stroke="#6A645B" stroke-width="2"/>
+          <path class="bt-liq bt-${k}" d="M${x - 16} 104 V156 a16 16 0 0 0 32 0 V104 z" style="fill:${KLAR}"/>
+          <circle class="bt-tropfen bt-t${k}" cx="${x}" cy="20" r="5" fill="${BROM}" opacity="0"/>
+          <text class="lbl b" x="${x}" y="194" text-anchor="middle">${n}</text><text class="lbl" x="${x}" y="206" text-anchor="middle">${f}</text>`).join("")}
+      </svg>
+      <svg class="bt-mol" viewBox="0 0 320 112" role="img" aria-label="Addition von Brom an Ethen">
+        <line class="bt-brbr" x1="140" y1="14" x2="180" y2="14" stroke="#6A645B" stroke-width="2.5"/>
+        <line class="bt-cbr" x1="140" y1="60" x2="140" y2="30" stroke="#6A645B" stroke-width="2.5"/><line class="bt-cbr" x1="180" y1="60" x2="180" y2="30" stroke="#6A645B" stroke-width="2.5"/>
+        <line class="bt-d1" x1="140" y1="56" x2="180" y2="56" stroke="#33302B" stroke-width="2.5"/><line class="bt-d2" x1="140" y1="64" x2="180" y2="64" stroke="#33302B" stroke-width="2.5"/>
+        ${[[140, 60, 116, 40, 112, 60], [140, 60, 116, 80, 140, 92], [180, 60, 204, 40, 208, 60], [180, 60, 204, 80, 180, 92]].map(([cx, cy, x, y, x2, y2], i) =>
+          `<line class="bt-ch" data-i="${i}" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" data-x2="${x2}" data-y2="${y2}" stroke="#9a958c" stroke-width="1.5"/>`).join("")}
+        <circle cx="140" cy="60" r="11" fill="#33302B"/><circle cx="180" cy="60" r="11" fill="#33302B"/>
+        ${[[116, 40, 112, 60], [116, 80, 140, 92], [204, 40, 208, 60], [204, 80, 180, 92]].map(([x, y, x2, y2], i) =>
+          `<g class="bt-h" data-i="${i}" style="transform:translate(${x}px,${y}px)" data-x2="${x2}" data-y2="${y2}" data-x="${x}" data-y="${y}"><circle r="7" fill="#fff" stroke="#9a958c"/><text y="3" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#555">H</text></g>`).join("")}
+        ${[[140, 14, 140, 30], [180, 14, 180, 30]].map(([x, y, x2, y2]) => `<g class="bt-br" style="transform:translate(${x}px,${y}px)" data-x="${x}" data-y="${y}" data-x2="${x2}" data-y2="${y2}"><circle r="10" fill="${BROM}"/><text y="3.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Br</text></g>`).join("")}
+        <text class="lbl bt-mtxt" x="160" y="108" text-anchor="middle">Am Beispiel Ethen: C₂H₄ + Br₂</text>
+      </svg>
+      <p class="anim-text" aria-live="polite"></p>
+      <div class="steuer"><button type="button" class="knopf prim" data-b>💧 Brom zugeben</button><button type="button" class="knopf" data-l disabled>💡 Licht an</button><button type="button" class="knopf" data-r>↺</button></div>`;
+    const svg = $("svg", el), mol = $(".bt-mol", el), txt = $(".anim-text", el), la = $(".bt-a", el), le = $(".bt-e", el);
+    const T0 = "Links Hexan (nur Einfachbindungen), rechts Hexen (mit einer Doppelbindung). Beide sind farblos. Gib rotbraunes Brom dazu!";
+    const timer = []; const spaeter = (f, ms) => timer.push(setTimeout(f, reduce ? 0 : ms));
+    const addition = an => {
+      mol.classList.toggle("addiert", an);
+      $$(".bt-h", mol).forEach(g => { const x = an ? g.dataset.x2 : g.dataset.x, y = an ? g.dataset.y2 : g.dataset.y; g.style.transform = `translate(${x}px,${y}px)`; });
+      $$(".bt-br", mol).forEach(g => { const x = an ? g.dataset.x2 : g.dataset.x, y = an ? g.dataset.y2 : g.dataset.y; g.style.transform = `translate(${x}px,${y}px)`; });
+      $$(".bt-ch", mol).forEach((l, i) => { const H = $$(".bt-h", mol)[i]; tween(l, "x2", +(an ? H.dataset.x2 : H.dataset.x), 1000); tween(l, "y2", +(an ? H.dataset.y2 : H.dataset.y), 1000); });
+      const d1 = $(".bt-d1", mol); tween(d1, "y1", an ? 60 : 56, 800); tween(d1, "y2", an ? 60 : 56, 800);
+      $(".bt-mtxt", mol).textContent = an ? "Ethen + Brom → 1,2-Dibromethan (Addition)" : "Am Beispiel Ethen: C₂H₄ + Br₂";
+    };
+    const reset = () => {
+      timer.forEach(clearTimeout); timer.length = 0; svg.classList.remove("licht", "tropft");
+      la.style.fill = KLAR; le.style.fill = KLAR; la.style.transitionDuration = ""; $(".bt-papier", el).setAttribute("fill", "#c9dfc3");
+      addition(false); $("[data-b]", el).disabled = false; $("[data-l]", el).disabled = true; txt.innerHTML = T0;
+    };
+    $("[data-b]", el).onclick = () => {
+      $("[data-b]", el).disabled = true; svg.classList.add("tropft");
+      spaeter(() => { la.style.fill = BROM; le.style.fill = BROM; svg.classList.remove("tropft"); }, 700);
+      spaeter(() => { le.style.fill = KLAR; addition(true);
+        txt.innerHTML = "Im <b>Hexen</b> verschwindet die Farbe sofort: Das Brom lagert sich an die Doppelbindung an – eine <b>Addition</b>. Im <b>Hexan</b> bleibt das Brom rotbraun. Und wenn man Licht dazugibt?";
+        $("[data-l]", el).disabled = false; }, 1700);
+    };
+    $("[data-l]", el).onclick = () => {
+      $("[data-l]", el).disabled = true; svg.classList.add("licht"); la.style.transitionDuration = "5s";
+      spaeter(() => { la.style.fill = "#efe2c8"; }, 300);
+      spaeter(() => $(".bt-papier", el).setAttribute("fill", "#d9534f"), 2500);
+      txt.innerHTML = "Mit Licht reagiert auch <b>Hexan</b> – aber langsam. Ein Wasserstoff-Atom wird gegen ein Brom-Atom ausgetauscht: eine <b>Substitution</b>. Dabei entsteht Bromwasserstoff, der feuchtes Indikatorpapier <b>rot</b> färbt.";
+    };
+    $("[data-r]", el).onclick = reset;
+    reset();
+  },
+
+  /* ---- Polymerisation ---- */
+  polymer(el) {
+    const n = 5, X0 = i => 41 + i * 62, X1 = i => 165 + (i - 2) * 52;
+    el.innerHTML = `
+      <span class="eyebrow">Teilchenmodell</span>
+      <h3>Aus vielen klein wird eins groß</h3>
+      <svg viewBox="0 0 330 124" role="img" aria-label="Ethen-Moleküle verbinden sich zu Polyethylen">
+        ${[0, 1, 2, 3].map(i => `<line class="pm-link" x1="${X1(i) + 13}" y1="60" x2="${X1(i + 1) - 13}" y2="60" stroke="#33302B" stroke-width="2.5"/>`).join("")}
+        <line class="pm-link" x1="${X1(0) - 13}" y1="60" x2="${X1(0) - 34}" y2="60" stroke="#33302B" stroke-width="2.5" stroke-dasharray="4 3"/>
+        <line class="pm-link" x1="${X1(4) + 13}" y1="60" x2="${X1(4) + 34}" y2="60" stroke="#33302B" stroke-width="2.5" stroke-dasharray="4 3"/>
+        ${Array.from({ length: n }, (_, i) => `<g class="pm-g" data-i="${i}" style="transform:translate(${X0(i)}px,0)">
+          <line class="pm-d1" x1="-13" y1="56" x2="13" y2="56" stroke="#33302B" stroke-width="2.5"/><line class="pm-d2" x1="-13" y1="64" x2="13" y2="64" stroke="#33302B" stroke-width="2.5"/>
+          ${[[-13, 34], [-13, 86], [13, 34], [13, 86]].map(([x, y]) => `<line x1="${x}" y1="60" x2="${x}" y2="${y}" stroke="#9a958c" stroke-width="1.5"/><circle cx="${x}" cy="${y}" r="6.5" fill="#fff" stroke="#9a958c"/>`).join("")}
+          <circle cx="-13" cy="60" r="9" fill="#33302B"/><circle cx="13" cy="60" r="9" fill="#33302B"/></g>`).join("")}
+        <text class="lbl b pm-txt" x="165" y="116" text-anchor="middle">5 Ethen-Moleküle (C₂H₄)</text>
+      </svg>
+      <p class="anim-text" aria-live="polite"></p>
+      <div class="steuer"><button type="button" class="knopf prim" data-p>🔗 Verknüpfen</button><button type="button" class="knopf" data-r>↺</button></div>`;
+    const svg = $("svg", el), txt = $(".anim-text", el);
+    const setze = an => {
+      svg.classList.toggle("poly", an);
+      $$(".pm-g", el).forEach(g => g.style.transform = `translate(${an ? X1(+g.dataset.i) : X0(+g.dataset.i)}px,0)`);
+      $$(".pm-d1", el).forEach(l => { tween(l, "y1", an ? 60 : 56, 800); tween(l, "y2", an ? 60 : 56, 800); });
+      $(".pm-txt", el).textContent = an ? "Ausschnitt aus Polyethylen: (–CH₂–CH₂–)ₙ" : "5 Ethen-Moleküle (C₂H₄)";
+      $("[data-p]", el).disabled = an;
+      txt.innerHTML = an ? "Die Doppelbindungen klappen auf. Jedes Kohlenstoff-Atom hat nun eine Hand frei und fasst das Nachbarmolekül: Es entsteht eine lange Kette – <b>Polyethylen</b>. In einer Plastiktüte stecken Ketten aus vielen tausend Ethen-Bausteinen."
+        : "Fünf Ethen-Moleküle mit je einer Doppelbindung. Unter Druck und mit einem Katalysator können sie sich verbinden.";
+    };
+    $("[data-p]", el).onclick = () => setze(true); $("[data-r]", el).onclick = () => setze(false);
+    setze(false);
+  },
+
   /* ---- CO₂-Kreislauf zum Antippen ---- */
   co2(el) {
     const INFO = {
@@ -2416,8 +3233,12 @@ function seiteStart() {
       <div class="kacheln">${kachel("e5")}</div>
     </section>
     <section>
+      <h2 class="h-petrol">Kapitel 5 · Kohlenwasserstoffe</h2>
+      <div class="kacheln">${kachel("e6")}${kachel("e7")}</div>
+    </section>
+    <section>
       <details class="lehrer"><summary>Für Lehrkräfte: Einsatz in der Vertretungsstunde</summary><div class="grid">
-        <p>Jede Expedition passt in eine Schulstunde (ca. 40 Minuten). Sie läuft im Browser auf Tablet, Handy oder Computer – ohne Anmeldung und ohne Datensammlung. Die Expeditionen bauen aufeinander auf (Säuren I, Säuren II, Laugen, Salze, Bindungen), lassen sich aber auch einzeln einsetzen.</p>
+        <p>Jede Expedition passt in eine Schulstunde (ca. 40 Minuten). Sie läuft im Browser auf Tablet, Handy oder Computer – ohne Anmeldung und ohne Datensammlung. Die Expeditionen bauen aufeinander auf (Säuren I und II, Laugen, Salze, Bindungen, Kohlenwasserstoffe I und II), lassen sich aber auch einzeln einsetzen.</p>
         <ul class="clean">
           <li><b>Ruhig im Klassenraum:</b> Die Versuchsfilme laufen als kurze Filmszenen ohne Ton. Nur bei voller Punktzahl erklingt eine kurze Fanfare.</li>
           <li><b>Stufenweise:</b> Jede Station öffnet sich erst, wenn die vorige geschafft ist. Mit „Alle offen“ kann frei gewählt werden.</li>
@@ -2494,7 +3315,7 @@ function seiteStation(eid, sid) {
   if (S.modus === "level" && !vor && !(h.d[sid] && h.d[sid].done)) { location.hash = eid; return; }
   const finale = sid === "s5";
   app.innerHTML = `
-  <div class="subkopf"><div class="row"><a class="zurueck" href="#${eid}">‹ Laborpass ${X.titel}</a><span class="tchip" id="tchip">💧 ${h.summe} / ${MAX}</span></div></div>
+  <div class="subkopf"><div class="row"><a class="zurueck" href="#${eid}" aria-label="Zurück zum Laborpass ${X.titel}">‹ ${X.titel.length > 14 ? "" : "Laborpass "}${X.titel}</a><span class="tchip" id="tchip">💧 ${h.summe} / ${MAX}</span></div></div>
   <div class="huelle">
     <section>
       <span class="eyebrow">${X.titel} · Station ${k + 1} von ${X.stationen.length} · ca. ${s.min} Min</span>
@@ -2569,7 +3390,7 @@ function seiteImpressum() {
     <p>Der Laborpass (Tropfen, Abzeichen, Spielmodus), der auf der Urkunde eingetragene Name und der Offline-Speicher werden ausschließlich lokal auf deinem Gerät im Browser abgelegt und verlassen es nicht. Du kannst sie jederzeit mit „Pass zurücksetzen“ oder über die Website-Daten deines Browsers löschen.</p>
     <p>Die Seite wird über GitHub Pages bereitgestellt (GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA). Beim Aufruf werden technisch bedingt Server-Logdaten (z. B. IP-Adresse, Zeitpunkt des Abrufs) durch GitHub verarbeitet; Näheres in der Datenschutzerklärung von GitHub. Darauf habe ich keinen Einfluss.</p>
     <h3>Transparenzhinweis zu KI-Inhalten</h3>
-    <p>Teile der Texte, Grafiken und Animationen dieser App wurden mit Unterstützung generativer KI erstellt und anschließend redaktionell geprüft. Die Versuchsfilme stammen aus meiner Lernsoftware „ICU Multimedia Chemie“.</p>
+    <p>Teile der Texte, Grafiken und Animationen dieser App wurden mit Unterstützung generativer KI erstellt und anschließend redaktionell geprüft. Die Versuchsfilme stammen aus meiner Lernsoftware „ICU Multimedia Chemie“ und aus eigenen Unterrichtsfilmen.</p>
     <h3>Sicherheitshinweis</h3>
     <p>Die gezeigten Versuche dienen der Anschauung. Versuche mit Säuren, Laugen oder offenem Feuer dürfen nur unter Aufsicht einer Lehrkraft und mit Schutzbrille durchgeführt werden.</p>
     <h3>Haftung für Inhalte und Links</h3>
@@ -2626,7 +3447,7 @@ function urkunde(eid) {
 /* ============ Navigation ============ */
 function route(behalteScroll) {
   $$(".overlay").forEach(o => o.remove());
-  const h = location.hash.slice(1), m = h.match(/^(e[1-5])-(s[1-5])$/);
+  const h = location.hash.slice(1), m = h.match(/^(e[1-7])-(s[1-5])$/);
   if (EXPS[h]) seitePass(h);
   else if (m) seiteStation(m[1], m[2]);
   else if (h === "ueber") seiteUeber();
