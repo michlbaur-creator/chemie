@@ -1,5 +1,5 @@
 // Chemie Mibaso – Offline-Cache. Bei Änderungen VERSION hochzählen.
-const VERSION = "chemie-v12";
+const VERSION = "chemie-v13";
 const CORE = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png", "img/portrait-garten.jpg",
   "clips/gefaehrlich.mp4", "clips/gefaehrlich.jpg", "clips/alltag.mp4", "clips/alltag.jpg", "clips/indikator.mp4", "clips/indikator.jpg",
   "clips/kohlensaeure.mp4", "clips/kohlensaeure.jpg", "clips/chlorwasserstoff.mp4", "clips/chlorwasserstoff.jpg", "clips/springbrunnen.mp4", "clips/springbrunnen.jpg",
